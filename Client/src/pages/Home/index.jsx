@@ -5,8 +5,10 @@ const Home = () => {
   return (
     <>
       <div className="home-wrapper flex flex-col h-screen">
-        <div className="map-area flex-1 border border-black">Hello</div>
-        <div className="services-area px-4 flex-1 border border-black">
+        <div className="map-area flex-1" id="map">
+          {/* Map Area */}
+        </div>
+        <div className="services-area px-4 flex-1 rounded-3xl">
           <div className="poppins-bold py-2 text-3xl services-header">
             <h1>Services</h1>
           </div>
