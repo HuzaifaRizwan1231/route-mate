@@ -10,39 +10,43 @@ mapboxgl.accessToken =
 
 function App() {
   useEffect(() => {
-    // Loading map
-    const map = new mapboxgl.Map({
-      container: "map",
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [0, 0],
-      zoom: 0,
-    });
+    try {
+      // Loading map
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [0, 0],
+        zoom: 0,
+      });
 
-    // Get geoLocateControl
-    const currentLocation = new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true,
-      },
-      trackUserLocation: true,
-      showUserHeading: true,
-    });
+      // Get geoLocateControl
+      const currentLocation = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+        showUserHeading: true,
+      });
 
-    // Add geolocate control to the map.
-    map.addControl(currentLocation);
+      // Add geolocate control to the map.
+      map.addControl(currentLocation);
 
-    // Trigger the geolocate control
-    map.on("load", () => {
-      currentLocation.trigger();
-    });
+      // Trigger the geolocate control
+      map.on("load", () => {
+        currentLocation.trigger();
+      });
 
-    return () => {
-      map.remove();
-    };
+      return () => {
+        map.remove();
+      };
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
   return (
     <>
-      {/* <Login /> */}
-      <Home />
+      <Login />
+      {/* <Home /> */}
     </>
   );
 }

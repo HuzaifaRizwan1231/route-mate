@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <>
       <div className="login-wrapper h-screen flex items-center justify-center">
-        <div className="login-section flex flex-col gap-8 flex-1 mx-6 p-8 rounded-2xl shadow-xl border">
+        <div className="login-section flex flex-col gap-8 flex-1 mx-6 p-6 rounded-2xl shadow-xl border">
           <div className="login-header flex flex-col gap-1">
             <h3 className="heading font-bold text-3xl">Login</h3>
             <h6 className="tagline text-gray-400">
@@ -38,17 +38,17 @@ const Login = () => {
                 />
               </div>
 
-              <div className="login-fields flex justify-between px-1">
-                <div className="remember-me flex items-center gap-1.5">
+              <div className="login-fields flex justify-between px-1]">
+                <div className="remember-me flex  items-center gap-1.5 text-sm">
                   <input
                     type="checkbox"
                     name="remember-pass"
                     id="remember-pass"
-                    className="scale-125"
+                    className="scale-110"
                   />
                   <label htmlFor="remember-pass">Remember me</label>
                 </div>
-                <div className="forgot-password text-blue-600">
+                <div className="text-sm forgot-password text-blue-600">
                   Forgot Password?
                 </div>
               </div>
@@ -57,7 +57,7 @@ const Login = () => {
                 <Button className="w-full">Sign in</Button>
               </div>
 
-              <div className="sign-up-link flex justify-center">
+              <div className="sign-up-link text-sm flex justify-center">
                 Don't have an account?{" "}
                 <span className="ml-1 text-blue-600"> Sign Up</span>
               </div>
