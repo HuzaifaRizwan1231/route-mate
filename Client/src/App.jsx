@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import Signup from "./pages/Signup";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaHV6YWlmYS1yaXp3YW4iLCJhIjoiY2x5NXExd3A2MDJhczJ2cjFnamozOGVtMiJ9.Z57HUmqikHJnZ1iaRuPQmQ";
@@ -35,7 +36,6 @@ function App() {
       map.on("load", () => {
         currentLocation.trigger();
       });
-
       return () => {
         map.remove();
       };
@@ -45,8 +45,9 @@ function App() {
   }, []);
   return (
     <>
-      <Login />
+      {/* <Login /> */}
       {/* <Home /> */}
+      <Signup />
     </>
   );
 }
