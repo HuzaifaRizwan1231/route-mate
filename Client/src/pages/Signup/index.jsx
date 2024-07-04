@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React from "react";
+import { useSignup } from "./useSignup";
+import { Loader2 } from "lucide-react";
 
 const Signup = () => {
+  const { handleInputChange, error, handleSignUp, loading } = useSignup();
   return (
     <>
       <div className="signup-wrappern pt-36 h-screen flex items-center justify-center">
@@ -15,11 +18,18 @@ const Signup = () => {
             </h6>
           </div>
           <div className="signup-form">
-            <form action="" className="flex flex-col gap-4">
+            <form
+              action=""
+              onSubmit={handleSignUp}
+              className="flex flex-col gap-4"
+            >
               {/* Name Input */}
               <div className="grid w-full max-w-sm items-center gap-3">
                 <Label htmlFor="name">Name</Label>
                 <Input
+                  required
+                  onChange={handleInputChange}
+                  name="name"
                   className="py-6"
                   type="text"
                   id="name"
@@ -30,6 +40,9 @@ const Signup = () => {
               <div className="grid w-full max-w-sm items-center gap-3">
                 <Label htmlFor="email">Email</Label>
                 <Input
+                  required
+                  onChange={handleInputChange}
+                  name="email"
                   className="py-6"
                   type="email"
                   id="email"
@@ -40,6 +53,9 @@ const Signup = () => {
               <div className="grid w-full max-w-sm items-center gap-3">
                 <Label htmlFor="password">Password</Label>
                 <Input
+                  required
+                  onChange={handleInputChange}
+                  name="password"
                   className="py-6"
                   type="password"
                   id="password"
@@ -48,8 +64,11 @@ const Signup = () => {
               </div>
               {/*Confirm Password Input */}
               <div className="grid w-full max-w-sm items-center gap-3">
-                <Label htmlFor="password">Confirm Password</Label>
+                <Label htmlFor="cpassword">Confirm Password</Label>
                 <Input
+                  required
+                  onChange={handleInputChange}
+                  name="cpassword"
                   className="py-6"
                   type="password"
                   id="cpassword"
@@ -57,22 +76,44 @@ const Signup = () => {
                 />
               </div>
 
-              <div className="signup-fields flex justify-between px-1]">
+              {/*Phone Input */}
+              <div className="grid w-full max-w-sm items-center gap-3">
+                <Label htmlFor="phone">Phone No</Label>
+                <Input
+                  required
+                  onChange={handleInputChange}
+                  name="phone"
+                  className="py-6"
+                  type="number"
+                  id="phone"
+                  placeholder="+923XXXXXXXXX"
+                />
+              </div>
+
+              <div className="signup-fields flex flex-col justify-between px-1]">
                 <div className="remember-me flex  items-center gap-1.5 text-sm">
                   <input
+                    required
                     type="checkbox"
-                    name="remember-pass"
-                    id="remember-pass"
+                    name="terms-conditions"
+                    id="terms-conditions"
                     className="scale-110"
                   />
-                  <label htmlFor="remember-pass">
+                  <label htmlFor="terms-conditions">
                     I Agree to terms and conditions
                   </label>
                 </div>
               </div>
 
-              <div className="signup-button mt-3">
-                <Button className="w-full">Create account</Button>
+              {error != "" && (
+                <div className="text-red-500 text-sm">* {error}</div>
+              )}
+
+              <div className="signup-button">
+                <Button className="w-full" disabled={loading}>
+                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  Create account
+                </Button>
               </div>
 
               <div className="login-link text-sm flex justify-center">

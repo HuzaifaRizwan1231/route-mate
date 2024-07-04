@@ -1,5 +1,6 @@
 import React from "react";
 import "/src/css/Home.css";
+import Navbar from "@/components/Navbar";
 
 const Home = () => {
   return (
@@ -31,6 +32,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Navbar />
     </>
   );
 };
