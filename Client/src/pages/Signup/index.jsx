@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import React from "react";
 import { useSignup } from "./useSignup";
 import { Loader2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const { handleInputChange, error, handleSignUp, loading } = useSignup();
@@ -118,7 +119,9 @@ const Signup = () => {
 
               <div className="login-link text-sm flex justify-center">
                 Already have an account?{" "}
-                <span className="ml-1 text-blue-600"> Login</span>
+                <Link to="/login">
+                  <span className="ml-1 text-blue-600"> Login</span>
+                </Link>
               </div>
             </form>
           </div>

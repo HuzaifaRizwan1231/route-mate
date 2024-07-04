@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import "/src/css/Login.css";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -59,7 +60,9 @@ const Login = () => {
 
               <div className="sign-up-link text-sm flex justify-center">
                 Don't have an account?{" "}
-                <span className="ml-1 text-blue-600"> Sign Up</span>
+                <Link to="/signup">
+                  <span className="ml-1 text-blue-600"> Sign Up</span>
+                </Link>
               </div>
             </form>
           </div>
