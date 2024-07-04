@@ -12,7 +12,7 @@ const Home = () => {
           <div className="poppins-bold py-2 text-3xl services-header">
             <h1>Services</h1>
           </div>
-          <div className="services grid grid-cols-2 gap-2">
+          <div className="services mb-24 grid grid-cols-2 gap-2">
             <div className="service-option ">
               <img src="src/assets/images/car.webp" className="" alt="" />
             </div>

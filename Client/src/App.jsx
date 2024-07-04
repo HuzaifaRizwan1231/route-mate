@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import Signup from "./pages/Signup";
+import Navbar from "./components/Navbar";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaHV6YWlmYS1yaXp3YW4iLCJhIjoiY2x5NXExd3A2MDJhczJ2cjFnamozOGVtMiJ9.Z57HUmqikHJnZ1iaRuPQmQ";
@@ -46,8 +47,9 @@ function App() {
   return (
     <>
       {/* <Login /> */}
-      {/* <Home /> */}
-      <Signup />
+      <Home />
+      <Navbar />
+      {/* <Signup /> */}
     </>
   );
 }
