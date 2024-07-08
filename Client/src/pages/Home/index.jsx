@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "/src/css/Home.css";
+import "/src/assets/css/Home.css";
 import Navbar from "@/components/Navbar";
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
