@@ -1,3 +1,4 @@
+import { signUpApi } from "@/api/auth.api";
 import { setCustomer } from "@/redux/customer/customerSlice";
 import axios from "axios";
 import { useState } from "react";
@@ -22,7 +23,7 @@ export const useSignup = () => {
     );
   };
 
-  const handleSignUp = (event) => {
+  const handleSignUp = async (event) => {
     event.preventDefault();
     setLoading(true);
     setError("");
@@ -30,23 +31,18 @@ export const useSignup = () => {
     if (customer.password != customer.cpassword) {
       setError("Passwords do not match");
       setLoading(false);
-
       return;
     }
 
     // try to insert new user into database
-    axios
-      .post("http://localhost:3000/signup", { customer })
-      .then((res) => {
-        setLoading(false);
-        if (res.data == "User Already Exists") {
-          setError("User already exists");
-        } else if (res.data == "Inserted Successfully") {
-          // Route the user to the home page
-          navigate("/");
-        }
-      })
-      .catch((err) => console.log(err));
+    const res = await signUpApi(customer);
+    setLoading(false);
+    if (res.data == "User Already Exists") {
+      setError("User already exists");
+    } else if (res.data == "Inserted Successfully") {
+      // Route the user to the home page
+      navigate("/");
+    }
   };
   return {
     handleInputChange,
