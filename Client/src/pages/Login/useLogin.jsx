@@ -32,13 +32,14 @@ export const useLogin = () => {
       setError(res.data);
     } else {
       // Correct credentials
-      const { name, email, password, phone } = res.data[0];
+      const { name, email, password, phone, image } = res.data[0];
       dispatch(
         setCustomer({
           name: name,
           email: email,
           password: password,
           phone: phone,
+          image: image,
         })
       );
       navigate("/");

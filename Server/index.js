@@ -2,11 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = 3000;
+const fileUpload = require("express-fileupload");
+const path = require("path");
 
 const db = require("./config/db.js");
 
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload());
 
 // Queries
 app.post("/signup", (req, res) => {
@@ -24,7 +27,7 @@ app.post("/signup", (req, res) => {
     } else {
       // Insert if user is unique
       db.query(
-        "INSERT INTO User(name, email, password, phone, role) VALUES(?,?,?,?,'customer')",
+        "INSERT INTO User(name, email, password, phone, role, image) VALUES(?,?,?,?,'customer', 'default')",
         [name, email, password, phone],
         (err, result) => {
           if (err) {
@@ -58,6 +61,37 @@ app.post("/signin", (req, res) => {
       }
     }
   );
+});
+
+app.post("/uploadimage", (req, res) => {
+  const { email } = req.body;
+  const file = req.files.file;
+  const destinationFolder = "../Client/src/assets/images/profilePics";
+
+  //Renaming the file according to the current timestamp
+  const originalFileName = file.name;
+  const timeStamp = Date.now();
+  const newFileName = `${timeStamp}_${originalFileName}`;
+
+  // Moving the file to the destination folder
+  file.mv(path.join(destinationFolder, newFileName), (err) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    //Inserting the file name into the database
+    db.query(
+      "UPDATE User SET image = ? WHERE email = ?",
+      [newFileName, email],
+      (err, result) => {
+        if (err) {
+          return res.json(err);
+        } else {
+          return res.json(newFileName);
+        }
+      }
+    );
+  });
 });
 
 app.listen(PORT, () => {

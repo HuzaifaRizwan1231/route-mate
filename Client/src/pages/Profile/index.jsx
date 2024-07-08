@@ -1,9 +1,13 @@
 import Navbar from "@/components/Navbar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useProfile } from "./useProfile";
 
 const Profile = () => {
+  const customer = useSelector((state) => state.customer.value);
+  const { clickOnFileInput, uploadProfilePic } = useProfile();
   return (
     <>
       <div className="profile-wrapper h-screen bg-black">
@@ -19,13 +23,26 @@ const Profile = () => {
             </div>
           </div>
           <div className="profile-img flex justify-center items-center py-2">
-            <Avatar className="w-32 h-32">
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback className="text-6xl">
+            <Avatar
+              onClick={clickOnFileInput}
+              className="w-32 h-32 text-black "
+            >
+              <AvatarImage
+                src={`src/assets/images/profilePics/${customer.image}`}
+              />
+              <AvatarFallback className=" hover:bg-gray-400 cursor-pointer text-6xl border border-black">
                 <i className="fa-solid fa-user"></i>
               </AvatarFallback>
             </Avatar>
           </div>
+          <input
+            onChange={uploadProfilePic}
+            type="file"
+            name=""
+            id="profile-pic-file"
+            hidden
+            accept="image/*"
+          />
         </div>
         <div className="profile-details-area flex gap-4 flex-col py-6 px-8 rounded-t-3xl bg-white h-2/3">
           <div className="profile-detail">

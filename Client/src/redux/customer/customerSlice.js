@@ -8,6 +8,7 @@ export const customerSlice = createSlice({
     password: "",
     cpassword: "",
     phone: "",
+    image: "default",
   },
   reducers: {
     setCustomer: (state, action) => {
