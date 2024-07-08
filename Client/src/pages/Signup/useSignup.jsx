@@ -1,24 +1,25 @@
+import { setCustomer } from "@/redux/customer/customerSlice";
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    password: "",
-    cpassword: "",
-    phone: "",
-  });
+  const dispatch = useDispatch();
+
+  const customer = useSelector((state) => state.customer.value);
 
   const handleInputChange = (event) => {
-    setUser({
-      ...user,
-      [event.target.name]: event.target.value,
-    });
+    console.log(customer);
+    dispatch(
+      setCustomer({
+        ...customer,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
 
   const handleSignUp = (event) => {
@@ -26,7 +27,7 @@ export const useSignup = () => {
     setLoading(true);
     setError("");
     // Check if passwords match
-    if (user.password != user.cpassword) {
+    if (customer.password != customer.cpassword) {
       setError("Passwords do not match");
       setLoading(false);
 
@@ -35,17 +36,22 @@ export const useSignup = () => {
 
     // try to insert new user into database
     axios
-      .post("http://localhost:3000/signup", { user })
+      .post("http://localhost:3000/signup", { customer })
       .then((res) => {
         setLoading(false);
         if (res.data == "User Already Exists") {
           setError("User already exists");
-        } else {
+        } else if (res.data == "Inserted Successfully") {
           // Route the user to the home page
           navigate("/");
         }
       })
       .catch((err) => console.log(err));
   };
-  return { user, setUser, handleInputChange, error, handleSignUp, loading };
+  return {
+    handleInputChange,
+    error,
+    handleSignUp,
+    loading,
+  };
 };

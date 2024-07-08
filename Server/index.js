@@ -10,7 +10,7 @@ app.use(express.json());
 
 // Queries
 app.post("/signup", (req, res) => {
-  const { name, email, password, phone } = req.body.user;
+  const { name, email, password, phone } = req.body.customer;
   let numOfRows;
 
   // Check if user already exists
