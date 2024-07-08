@@ -1,10 +1,12 @@
 import { signInApi } from "@/api/auth.api";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { setCustomer } from "@/redux/customer/customerSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export const useLogin = () => {
+  const { saveInLocalStorage } = useLocalStorage();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const customer = useSelector((state) => state.customer.value);
@@ -35,6 +37,16 @@ export const useLogin = () => {
       const { name, email, password, phone, image } = res.data[0];
       dispatch(
         setCustomer({
+          name: name,
+          email: email,
+          password: password,
+          phone: phone,
+          image: image,
+        })
+      );
+      localStorage.setItem(
+        "customer",
+        JSON.stringify({
           name: name,
           email: email,
           password: password,

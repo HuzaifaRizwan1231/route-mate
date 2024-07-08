@@ -1,4 +1,5 @@
 import { signUpApi } from "@/api/auth.api";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { setCustomer } from "@/redux/customer/customerSlice";
 import axios from "axios";
 import { useState } from "react";
@@ -6,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export const useSignup = () => {
+  const { saveInLocalStorage } = useLocalStorage();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -14,9 +16,11 @@ export const useSignup = () => {
   const customer = useSelector((state) => state.customer.value);
 
   const handleInputChange = (event) => {
+    console.log(customer);
     dispatch(
       setCustomer({
         ...customer,
+        image: "default",
         [event.target.name]: event.target.value,
       })
     );
@@ -40,6 +44,7 @@ export const useSignup = () => {
       setError("User already exists");
     } else if (res.data == "Inserted Successfully") {
       // Route the user to the home page
+      saveInLocalStorage();
       navigate("/");
     }
   };
