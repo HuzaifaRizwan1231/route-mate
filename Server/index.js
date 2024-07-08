@@ -37,6 +37,29 @@ app.post("/signup", (req, res) => {
   });
 });
 
+app.post("/signin", (req, res) => {
+  const { email, password } = req.body.customer;
+  let numOfRows;
+
+  // Check if user already exists
+  db.query(
+    "SELECT * FROM User WHERE email = ? AND password = ?",
+    [email, password],
+    (err, result) => {
+      if (err) {
+        return res.json(err);
+      }
+      numOfRows = result.length;
+      if (numOfRows == 1) {
+        return res.json(result);
+      } else {
+        //if incorrect credentials
+        return res.json("Incorrect email or password");
+      }
+    }
+  );
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });

@@ -14,7 +14,6 @@ export const useSignup = () => {
   const customer = useSelector((state) => state.customer.value);
 
   const handleInputChange = (event) => {
-    console.log(customer);
     dispatch(
       setCustomer({
         ...customer,

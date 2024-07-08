@@ -4,8 +4,11 @@ import { Label } from "@/components/ui/label";
 import "/src/assets/css/Login.css";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLogin } from "./useLogin";
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
+  const { handleLoginInputChange, handleSignIn, loading, error } = useLogin();
   return (
     <>
       <div className="login-wrapper h-screen flex items-center justify-center">
@@ -17,12 +20,19 @@ const Login = () => {
             </h6>
           </div>
           <div className="login-form">
-            <form action="" className="flex flex-col gap-4">
+            <form
+              action=""
+              className="flex flex-col gap-4"
+              onSubmit={handleSignIn}
+            >
               {/* Email Input */}
               <div className="grid w-full max-w-sm items-center gap-3">
                 <Label htmlFor="email">Email</Label>
                 <Input
+                  required
+                  onChange={handleLoginInputChange}
                   className="py-6"
+                  name="email"
                   type="email"
                   id="email"
                   placeholder="Enter your email"
@@ -32,8 +42,11 @@ const Login = () => {
               <div className="grid w-full max-w-sm items-center gap-3">
                 <Label htmlFor="password">Password</Label>
                 <Input
+                  required
+                  onChange={handleLoginInputChange}
                   className="py-6"
                   type="password"
+                  name="password"
                   id="password"
                   placeholder="Enter password"
                 />
@@ -54,8 +67,15 @@ const Login = () => {
                 </div>
               </div>
 
-              <div className="login-button mt-3">
-                <Button className="w-full">Sign in</Button>
+              {error != "" && (
+                <div className="text-red-500 text-sm">* {error}</div>
+              )}
+
+              <div className="login-button">
+                <Button className="w-full" disabled={loading}>
+                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  Sign in
+                </Button>
               </div>
 
               <div className="sign-up-link text-sm flex justify-center">
