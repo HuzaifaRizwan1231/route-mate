@@ -14,6 +14,7 @@ export const useProfile = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("email", customer.email);
+    formData.append("oldFileName", customer.image);
     const res = await uploadImageApi(formData);
     dispatch(
       setCustomer({

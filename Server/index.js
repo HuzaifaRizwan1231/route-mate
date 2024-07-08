@@ -4,6 +4,7 @@ const app = express();
 const PORT = 3000;
 const fileUpload = require("express-fileupload");
 const path = require("path");
+const fs = require("fs");
 
 const db = require("./config/db.js");
 
@@ -64,9 +65,14 @@ app.post("/signin", (req, res) => {
 });
 
 app.post("/uploadimage", (req, res) => {
-  const { email } = req.body;
+  const { email, oldFileName } = req.body;
   const file = req.files.file;
   const destinationFolder = "../Client/src/assets/images/profilePics";
+
+  // Delete old file if exists
+  if (fs.existsSync(path.join(destinationFolder, oldFileName))) {
+    fs.unlinkSync(path.join(destinationFolder, oldFileName));
+  }
 
   //Renaming the file according to the current timestamp
   const originalFileName = file.name;
