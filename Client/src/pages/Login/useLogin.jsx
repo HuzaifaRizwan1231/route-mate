@@ -9,7 +9,7 @@ export const useLogin = () => {
   const { saveInLocalStorage } = useLocalStorage();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const customer = useSelector((state) => state.customer.value);
+  const customer = useSelector((state) => state.customer.customer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,26 +34,17 @@ export const useLogin = () => {
       setError(res.data);
     } else {
       // Correct credentials
-      const { name, email, password, phone, image } = res.data[0];
-      dispatch(
-        setCustomer({
-          name: name,
-          email: email,
-          password: password,
-          phone: phone,
-          image: image,
-        })
-      );
-      localStorage.setItem(
-        "customer",
-        JSON.stringify({
-          name: name,
-          email: email,
-          password: password,
-          phone: phone,
-          image: image,
-        })
-      );
+      const updatedCustomer = {
+        name: res.data[0].name,
+        email: res.data[0].email,
+        password: res.data[0].password,
+        phone: res.data[0].phone,
+        image: res.data[0].image,
+      };
+
+      dispatch(setCustomer(updatedCustomer));
+      console.log("2", customer);
+      saveInLocalStorage();
       navigate("/");
     }
   };

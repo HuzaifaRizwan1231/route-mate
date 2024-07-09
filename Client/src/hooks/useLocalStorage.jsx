@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export const useLocalStorage = () => {
-  const customer = useSelector((state) => state.customer.value);
+  const customer = useSelector((state) => state.customer.customer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const saveInLocalStorage = () => {
+    localStorage.clear();
+    console.log(customer);
     localStorage.setItem("customer", JSON.stringify(customer));
   };
 

@@ -3,16 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 export const customerSlice = createSlice({
   name: "customer",
   initialState: {
-    name: "",
-    email: "",
-    password: "",
-    cpassword: "",
-    phone: "",
-    image: "default",
+    customer: {
+      name: "",
+      email: "",
+      password: "",
+      cpassword: "",
+      phone: "",
+      image: "default",
+    },
   },
   reducers: {
     setCustomer: (state, action) => {
-      state.value = action.payload;
+      state.customer = action.payload;
     },
   },
 });

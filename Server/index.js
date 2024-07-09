@@ -34,7 +34,16 @@ app.post("/signup", (req, res) => {
           if (err) {
             return res.json(err);
           }
-          return res.json("Inserted Successfully");
+          db.query(
+            "SELECT * FROM User WHERE user_id = ?",
+            [result.insertId],
+            (err, response) => {
+              if (err) {
+                return res.json(err);
+              }
+              return res.json(response);
+            }
+          );
         }
       );
     }

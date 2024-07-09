@@ -15,10 +15,14 @@ export const useProfile = () => {
     formData.append("file", file);
     formData.append("email", customer.email);
     formData.append("oldFileName", customer.image);
+    console.log(customer);
     const res = await uploadImageApi(formData);
     dispatch(
       setCustomer({
-        ...customer,
+        name: customer.name,
+        email: customer.email,
+        password: customer.password,
+        phone: customer.phone,
         image: res.data,
       })
     );
