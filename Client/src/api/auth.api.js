@@ -4,7 +4,7 @@ const url = "http://localhost:3000";
 
 export const signUpApi = async (customer) => {
   try {
-    const response = await axios.post(`${url}/signup`, {
+    const response = await axios.post(`${url}/api/auth/signup`, {
       customer,
     });
     return response;
@@ -15,7 +15,7 @@ export const signUpApi = async (customer) => {
 
 export const signInApi = async (customer) => {
   try {
-    const response = await axios.post(`${url}/signin`, {
+    const response = await axios.post(`${url}/api/auth/signin`, {
       customer,
     });
     return response;

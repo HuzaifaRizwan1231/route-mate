@@ -51,7 +51,7 @@ export const useSignup = () => {
         })
       );
       // Route the user to the home page
-      saveInLocalStorage();
+      // saveInLocalStorage();
       navigate("/");
     }
   };

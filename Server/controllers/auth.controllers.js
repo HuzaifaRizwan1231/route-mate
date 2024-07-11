@@ -1,27 +1,31 @@
 const db = require("../config/db");
+const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const signInCustomer = async (req, res) => {
   try {
     const { email, password } = req.body.customer;
-    let numOfRows;
 
-    // Check if user already exists
-    db.query(
-      "SELECT * FROM User WHERE email = ? AND password = ?",
-      [email, password],
-      (err, result) => {
-        if (err) {
-          return res.json(err);
-        }
-        numOfRows = result.length;
-        if (numOfRows == 1) {
-          return res.json(result);
-        } else {
-          //if incorrect credentials
-          return res.json("Incorrect email or password");
-        }
+    // Check if user exists
+    db.query("SELECT * FROM User WHERE email = ?", [email], (err, result) => {
+      if (err) {
+        return res.json(err);
       }
-    );
+      // if no user found
+      if (result.length == 0) {
+        return res.json("Incorrect email or password");
+      }
+      //if correct email
+      const validPassword = bcryptjs.compareSync(password, result[0].password);
+      if (validPassword) {
+        const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
+        return res.json("Kamaal");
+        res
+          .cookie("access_token", token, { httpOnly: true })
+          .status(200)
+          .send({ success: true, message: `Wellcome ${result[0].name}` });
+      }
+    });
   } catch (error) {
     res.send(400, error.message);
   }
@@ -52,7 +56,6 @@ const signUpCustomer = async (req, res) => {
               return res.json(err);
             }
             const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
-
             res
               .cookie("access_token", token, { httpOnly: true })
               .status(201)

@@ -44,8 +44,8 @@ export const useLogin = () => {
 
       dispatch(setCustomer(updatedCustomer));
       console.log("2", customer);
-      saveInLocalStorage();
-      navigate("/");
+      // saveInLocalStorage();
+      // navigate("/");
     }
   };
   return { handleLoginInputChange, handleSignIn, error, loading };
