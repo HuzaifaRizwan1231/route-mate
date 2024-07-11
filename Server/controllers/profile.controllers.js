@@ -1,6 +1,8 @@
-import db from "../config/db";
+const db = require("../config/db");
+const path = require("path");
+const fs = require("fs");
 
-export const uploadImage = async (req, res) => {
+const uploadImage = async (req, res) => {
   try {
     const { email, oldFileName } = req.body;
     const file = req.files.file;
@@ -37,3 +39,5 @@ export const uploadImage = async (req, res) => {
     });
   } catch (error) {}
 };
+
+module.exports = { uploadImage };
