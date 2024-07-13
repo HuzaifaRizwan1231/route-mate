@@ -1,24 +1,32 @@
 import React from "react";
 import Navitem from "./Navitem";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const customer = useSelector((state) => state.customer.value);
   return (
     <>
       <div className="fixed bottom-0 w-screen border-t border-gray-300 bg-white">
         <div className="nav-items items-center flex gap-4 p-4">
+          <Navitem label="Home" iconClass="fa-solid fa-house" link="/" />
           <Navitem label="Home" iconClass="fa-solid fa-house" />
           <Navitem label="Home" iconClass="fa-solid fa-house" />
           <Navitem label="Home" iconClass="fa-solid fa-house" />
-          <Navitem label="Home" iconClass="fa-solid fa-house" />
-          <div className="nav-item hover:bg-gray-100 cursor-pointer  flex-1  rounded-md w-10 h-10 p-6  flex flex-col justify-center items-center">
+          <Link
+            to="/profile"
+            className="nav-item hover:bg-gray-100 cursor-pointer  flex-1  rounded-md w-10 h-10 p-6  flex flex-col justify-center items-center"
+          >
             <Avatar className="w-8 h-8">
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage
+                src={`src/assets/images/profilePics/${customer.image}`}
+              />
               <AvatarFallback className="border border-black">
                 <i className="fa-solid fa-user"></i>
               </AvatarFallback>
             </Avatar>
-          </div>
+          </Link>
         </div>
       </div>
     </>

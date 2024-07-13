@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
-import "/src/css/Home.css";
+import "/src/assets/css/Home.css";
 import Navbar from "@/components/Navbar";
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiaHV6YWlmYS1yaXp3YW4iLCJhIjoiY2x5NXExd3A2MDJhczJ2cjFnamozOGVtMiJ9.Z57HUmqikHJnZ1iaRuPQmQ";
 
 const Home = () => {
+  const { setCustomerFromLocalStorage } = useLocalStorage();
   useEffect(() => {
+    setCustomerFromLocalStorage();
     try {
       // Loading map
       const map = new mapboxgl.Map({
