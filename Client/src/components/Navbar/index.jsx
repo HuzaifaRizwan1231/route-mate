@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 const Navbar = () => {
   return (
     <>
-      <div className="absolute bottom-0 w-screen shadow-2xl bg-white">
+      <div className="fixed bottom-0 w-screen border-t border-gray-300 bg-white">
         <div className="nav-items items-center flex gap-4 p-4">
           <Navitem label="Home" iconClass="fa-solid fa-house" />
           <Navitem label="Home" iconClass="fa-solid fa-house" />

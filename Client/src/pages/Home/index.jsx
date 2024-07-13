@@ -43,14 +43,14 @@ const Home = () => {
   return (
     <>
       <div className="home-wrapper flex flex-col h-screen">
-        <div className="map-area flex-1" id="map">
+        <div className="map-area flex-1 h-1/2" id="map">
           {/* Map Area */}
         </div>
-        <div className="services-area px-4 flex-1 rounded-3xl">
-          <div className="poppins-bold py-2 text-3xl services-header">
-            <h1>Services</h1>
+        <div className="services-area flex flex-col h-1/2 px-4 flex-1 rounded-3xl">
+          <div className="py-2 text-gray-700 border-b border-gray-300 text-center services-header">
+            <h1>Choose a ride or swipe up for more</h1>
           </div>
-          <div className="services mb-24 grid grid-cols-2 gap-2">
+          <div className="services pr-2 py-4 overflow-y-scroll grid grid-cols-2 gap-2">
             <div className="service-option ">
               <img src="src/assets/images/car.webp" className="" alt="" />
             </div>
@@ -66,6 +66,7 @@ const Home = () => {
               {" "}
               <img src="src/assets/images/bus.jpg" alt="" />
             </div>
+            <div className="col-span-2 pb-[4.5rem]"></div>
           </div>
         </div>
       </div>
