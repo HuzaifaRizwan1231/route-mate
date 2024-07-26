@@ -6,14 +6,14 @@ import { useSignup } from "./useSignup";
 import { Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Signup = () => {
+const PassengerSignup = () => {
   const { handleInputChange, error, handleSignUp, loading } = useSignup();
   return (
     <>
-      <div className="signup-wrappern pt-36 h-screen flex items-center justify-center">
-        <div className="signup-section flex flex-col gap-8 flex-1 mx-6 p-6 rounded-2xl shadow-xl border">
+      <div className="signup-wrapper py-10 flex items-center justify-center">
+        <div className="signup-section flex flex-col gap-8 mx-6 px-12 py-16 rounded-2xl shadow-xl border w-1/3">
           <div className="signup-header flex flex-col gap-1">
-            <h3 className="heading font-bold text-3xl">Signup</h3>
+            <h3 className="heading font-bold text-3xl">Passenger Signup</h3>
             <h6 className="tagline text-gray-400">
               Get started with your account
             </h6>
@@ -25,7 +25,7 @@ const Signup = () => {
               className="flex flex-col gap-4"
             >
               {/* Name Input */}
-              <div className="grid w-full max-w-sm items-center gap-3">
+              <div className="grid w-full items-center gap-3">
                 <Label htmlFor="name">Name</Label>
                 <Input
                   required
@@ -38,7 +38,7 @@ const Signup = () => {
                 />
               </div>
               {/* Email Input */}
-              <div className="grid w-full max-w-sm items-center gap-3">
+              <div className="grid w-full items-center gap-3">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   required
@@ -51,7 +51,7 @@ const Signup = () => {
                 />
               </div>
               {/* Password Input */}
-              <div className="grid w-full max-w-sm items-center gap-3">
+              <div className="grid w-full items-center gap-3">
                 <Label htmlFor="password">Password</Label>
                 <Input
                   required
@@ -64,7 +64,7 @@ const Signup = () => {
                 />
               </div>
               {/*Confirm Password Input */}
-              <div className="grid w-full max-w-sm items-center gap-3">
+              <div className="grid w-full items-center gap-3">
                 <Label htmlFor="cpassword">Confirm Password</Label>
                 <Input
                   required
@@ -78,7 +78,7 @@ const Signup = () => {
               </div>
 
               {/*Phone Input */}
-              <div className="grid w-full max-w-sm items-center gap-3">
+              <div className="grid w-full items-center gap-3">
                 <Label htmlFor="phone">Phone No</Label>
                 <Input
                   required
@@ -134,7 +134,6 @@ const Signup = () => {
             </div>
             <div className="other-sign-in-options justify-center flex gap-4">
               <Button variant="outline">Driver</Button>
-              <Button variant="outline">Admin</Button>
             </div>
           </div>
         </div>
@@ -143,4 +142,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default PassengerSignup;

@@ -1,8 +1,8 @@
 import "/src/assets/css/App.css";
-import Login from "./pages/Login";
+import PassengerLogin from "./pages/PassengerLogin";
 import Home from "./pages/Home";
 
-import Signup from "./pages/Signup";
+import PassengerSignup from "./pages/PassengerSignup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Profile from "./pages/Profile";
 
@@ -12,8 +12,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/passenger/signup" element={<PassengerSignup />} />
+          <Route path="/passenger/login" element={<PassengerLogin />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
