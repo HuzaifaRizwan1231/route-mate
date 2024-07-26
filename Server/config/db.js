@@ -1,4 +1,4 @@
-const mysql = require('mysql')
+const mysql = require("mysql");
 
 // const db = mysql.createPool({
 //     waitForConnections : true,
@@ -13,17 +13,16 @@ const mysql = require('mysql')
 // })
 
 const db = mysql.createPool({
-    waitForConnections : true,
-    queueLimit :0,
-    host: "mysql-108e726a-huzaifa-a95e.d.aivencloud.com",
-    user: "avnadmin",
-    password: "AVNS_jGXuSgbPuvpR5YAL9TQ",
-    database: "fast-travel",
-    debug    :  true,
-    wait_timeout : 28800,
-    connect_timeout :10,
-    port:11134
-})
-
+  waitForConnections: true,
+  queueLimit: 0,
+  host: "mysql-108e726a-huzaifa-a95e.d.aivencloud.com",
+  user: "avnadmin",
+  password: "AVNS_jGXuSgbPuvpR5YAL9TQ",
+  database: "route-mate",
+  debug: true,
+  wait_timeout: 28800,
+  connect_timeout: 10,
+  port: 11134,
+});
 
 module.exports = db;
