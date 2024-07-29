@@ -2,7 +2,7 @@ import axios from "../config/axios.config";
 
 export const signUpPassengerApi = async (passenger) => {
   try {
-    const response = await axios.post(`/api/auth/signup`, {
+    const response = await axios.post(`/api/auth/signUpPassenger`, {
       passenger,
     });
     return response.data;
@@ -11,12 +11,12 @@ export const signUpPassengerApi = async (passenger) => {
   }
 };
 
-export const signInApi = async (user) => {
+export const signInPassengerApi = async (passenger) => {
   try {
-    const response = await axios.post(`/api/auth/signin`, {
-      customer,
+    const response = await axios.post(`/api/auth/signInPassenger`, {
+      passenger,
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.log(error);
   }

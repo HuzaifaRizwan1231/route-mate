@@ -4,11 +4,12 @@ import { Label } from "@/components/ui/label";
 import "/src/assets/css/Login.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import { useLogin } from "./useLogin";
+import { usePassengerLogin } from "./usePassengerLogin";
 import { Loader2 } from "lucide-react";
 
 const PassengerLogin = () => {
-  const { handleLoginInputChange, handleSignIn, loading, error } = useLogin();
+  const { handleLoginInputChange, handleSignIn, loading, error } =
+    usePassengerLogin();
   return (
     <>
       <div className="login-wrapper h-screen flex items-center justify-center">

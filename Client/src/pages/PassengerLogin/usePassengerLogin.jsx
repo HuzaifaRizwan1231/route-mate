@@ -1,18 +1,20 @@
-import { signInApi } from "@/api/auth.api";
+import { signInPassengerApi } from "@/api/auth.api";
+import { setPassenger } from "@/redux/passenger/passengerSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export const useLogin = () => {
+export const usePassengerLogin = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { passenger } = useSelector((state) => state.passenger);
 
   const handleLoginInputChange = (event) => {
     dispatch(
-      setCustomer({
-        ...customer,
+      setPassenger({
+        ...passenger,
         [event.target.name]: event.target.value,
       })
     );
@@ -24,24 +26,15 @@ export const useLogin = () => {
     setLoading(true);
 
     //api call
-    const res = await signInApi(customer);
+    const response = await signInPassengerApi(passenger);
     setLoading(false);
-    if (res.data == "Incorrect email or password") {
-      setError(res.data);
-    } else {
-      // Correct credentials
-      const updatedCustomer = {
-        name: res.data[0].name,
-        email: res.data[0].email,
-        password: res.data[0].password,
-        phone: res.data[0].phone,
-        image: res.data[0].image,
-      };
 
-      dispatch(setCustomer(updatedCustomer));
-      console.log("2", customer);
-      // saveInLocalStorage();
-      // navigate("/");
+    if (response.success) {
+      // Correct credentials
+      dispatch(setPassenger(response.passenger));
+      console.log(passenger);
+    } else {
+      setError(response.error);
     }
   };
   return { handleLoginInputChange, handleSignIn, error, loading };

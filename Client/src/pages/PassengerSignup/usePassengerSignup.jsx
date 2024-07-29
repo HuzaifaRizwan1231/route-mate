@@ -44,8 +44,8 @@ export const usePassengerSignup = () => {
       dispatch(setPassenger(response.passenger));
       // Route the user to the home page
       console.log(passenger);
-    } else if (response.error === "User Already Exists") {
-      setError("User already exists");
+    } else {
+      setError(response.error);
     }
   };
   return {
