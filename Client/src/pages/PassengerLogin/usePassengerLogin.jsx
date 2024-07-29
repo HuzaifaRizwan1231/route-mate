@@ -33,6 +33,7 @@ export const usePassengerLogin = () => {
       // Correct credentials
       dispatch(setPassenger(response.passenger));
       console.log(passenger);
+      navigate("/passenger/home");
     } else {
       setError(response.error);
     }
