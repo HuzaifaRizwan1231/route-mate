@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import customerReducer from "./customer/customerSlice";
+import passengerReducer from "./passenger/passengerSlice";
 
 export default configureStore({
   reducer: {
-    customer: customerReducer,
+    passenger: passengerReducer,
   },
 });

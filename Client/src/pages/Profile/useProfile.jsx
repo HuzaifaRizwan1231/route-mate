@@ -1,5 +1,4 @@
 import { uploadImageApi } from "@/api/profile.api";
-import { setCustomer } from "@/redux/customer/customerSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export const useProfile = () => {

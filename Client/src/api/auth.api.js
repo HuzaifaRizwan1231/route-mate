@@ -1,21 +1,19 @@
-import axios from "axios";
+import axios from "../config/axios.config";
 
-const url = "http://localhost:3000";
-
-export const signUpApi = async (customer) => {
+export const signUpPassengerApi = async (passenger) => {
   try {
-    const response = await axios.post(`${url}/api/auth/signup`, {
-      customer,
+    const response = await axios.post(`/api/auth/signup`, {
+      passenger,
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const signInApi = async (customer) => {
+export const signInApi = async (user) => {
   try {
-    const response = await axios.post(`${url}/api/auth/signin`, {
+    const response = await axios.post(`/api/auth/signin`, {
       customer,
     });
     return response;

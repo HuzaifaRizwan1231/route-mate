@@ -2,12 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React from "react";
-import { useSignup } from "./useSignup";
+import { usePassengerSignup } from "./usePassengerSignup";
 import { Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const PassengerSignup = () => {
-  const { handleInputChange, error, handleSignUp, loading } = useSignup();
+  const { handleInputChange, error, handleSignUp, loading } =
+    usePassengerSignup();
   return (
     <>
       <div className="signup-wrapper py-10 flex items-center justify-center">
@@ -77,6 +78,20 @@ const PassengerSignup = () => {
                 />
               </div>
 
+              {/*CNIC Input */}
+              <div className="grid w-full items-center gap-3">
+                <Label htmlFor="cnic">CNIC</Label>
+                <Input
+                  required
+                  onChange={handleInputChange}
+                  name="cnic"
+                  className="py-6"
+                  type="number"
+                  id="cnic"
+                  placeholder="3520XXXXXXXXX"
+                />
+              </div>
+
               {/*Phone Input */}
               <div className="grid w-full items-center gap-3">
                 <Label htmlFor="phone">Phone No</Label>
@@ -126,9 +141,9 @@ const PassengerSignup = () => {
             </form>
           </div>
           <div className="signup-footer gap-8 flex flex-col">
-            <div class="separator mt-4 flex items-center justify-center w-full">
-              <hr class="w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
-              <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">
+            <div className="separator mt-4 flex items-center justify-center w-full">
+              <hr className="w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
+              <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">
                 or sign in as
               </span>
             </div>
