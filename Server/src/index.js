@@ -1,5 +1,6 @@
 const authRoutes = require("../routes/auth.routes");
 const profileRoutes = require("../routes/profile.routes");
+const passengerRoutes = require("../routes/passenger.routes");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(fileUpload());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/passenger", passengerRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
