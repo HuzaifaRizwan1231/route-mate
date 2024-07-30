@@ -1,4 +1,3 @@
-import ListingDetail from "@/components/ListingDetail";
 import PassengerNavbar from "@/components/PassengerNavbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,8 +6,6 @@ import React from "react";
 const SearchListing = () => {
   return (
     <>
-      {false && <ListingDetail />}
-
       <div>
         <PassengerNavbar />
         <div className="flex flex-col gap-10 bg-white text-black h-screen rounded-t-[2.5rem] p-4">

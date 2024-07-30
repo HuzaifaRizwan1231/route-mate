@@ -15,6 +15,7 @@ import PassengerPrivateRoutes from "./components/PrivateRoutes/PassengerPrivateR
 import DriverHome from "./pages/DriverHome";
 import DriverPrivateRoutes from "./components/PrivateRoutes/DriverPrivateRoutes";
 import CreateListing from "./pages/CreateListing";
+import ListingDetail from "./components/ListingDetail";
 
 function App() {
   return (
@@ -31,6 +32,14 @@ function App() {
             <Route
               path="/passenger/searchListing"
               element={<SearchListing />}
+            />
+            <Route
+              path="/passenger/searchListing/:listingId"
+              element={
+                <>
+                  <ListingDetail /> <SearchListing />
+                </>
+              }
             />
           </Route>
 
