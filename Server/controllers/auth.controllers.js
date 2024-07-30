@@ -29,7 +29,7 @@ const signInPassenger = async (req, res) => {
         if (validPassword) {
           const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
           res
-            .cookie("access_token", token, { httpOnly: true })
+            .cookie("passenger_token", token, { httpOnly: true })
             .status(200)
             .send({
               success: true,
@@ -80,7 +80,7 @@ const signUpPassenger = async (req, res) => {
               }
               const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
               res
-                .cookie("access_token", token, { httpOnly: true })
+                .cookie("passenger_token", token, { httpOnly: true })
                 .status(201)
                 .send({
                   success: true,
