@@ -5,18 +5,10 @@ import PassengerNavbar from "@/components/PassengerNavbar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
-import Authenticating from "@/components/Authenticating";
 
 const PassengerHome = () => {
   const { passenger } = useSelector((state) => state.passenger);
 
-  // if (passenger === null) {
-  //   return (
-  //     <>
-  //       <Authenticating />
-  //     </>
-  //   );
-  // }
   return (
     <>
       <div className="bg-black">

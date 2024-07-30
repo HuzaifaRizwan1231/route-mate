@@ -2,23 +2,39 @@ import "/src/assets/css/App.css";
 import PassengerLogin from "./pages/PassengerLogin";
 
 import PassengerSignup from "./pages/PassengerSignup";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Profile from "./pages/Profile";
 import PassengerHome from "./pages/PassengerHome";
 import SearchListing from "./pages/SearchListing";
-import ListingDetail from "./components/ListingDetail";
+import PassengerPrivateRoutes from "./components/PrivateRoutes/PassengerPrivateRoutes";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          {/* <Route element={<>Hello</>} /> */}
-          <Route path="/passenger/home" element={<PassengerHome />} />
           <Route path="/passenger/signup" element={<PassengerSignup />} />
           <Route path="/passenger/signin" element={<PassengerLogin />} />
-          <Route path="/passenger/searchListing" element={<SearchListing />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<Navigate to="/passenger/home" />} />
+
+          {/* Passenger Routes */}
+          <Route element={<PassengerPrivateRoutes />}>
+            <Route path="/passenger/home" element={<PassengerHome />} />
+            <Route
+              path="/passenger/searchListing"
+              element={<SearchListing />}
+            />
+          </Route>
+
+          {/* Driver Routes */}
+          <Route></Route>
+
+          {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
       </Router>
     </>

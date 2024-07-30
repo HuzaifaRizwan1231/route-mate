@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
 
-const Authenticating = () => {
+const PassengerPrivateRoutes = () => {
   const { passenger } = useSelector((state) => state.passenger);
   useEffect(() => {}, []);
-  return <div>Authenticating...</div>;
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 };
 
-export default Authenticating;
+export default PassengerPrivateRoutes;

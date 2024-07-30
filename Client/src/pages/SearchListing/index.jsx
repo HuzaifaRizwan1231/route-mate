@@ -7,7 +7,7 @@ import React from "react";
 const SearchListing = () => {
   return (
     <>
-      {false && <ListingDetail />}
+      {true && <ListingDetail />}
 
       <div className="bg-black">
         <PassengerNavbar />
