@@ -28,7 +28,7 @@ const CreateListing = () => {
 
   return (
     <>
-      <div className="bg-black">
+      <div>
         <PassengerNavbar />
         <div className="bg-white h-screen text-black rounded-t-[2.5rem] flex">
           <div className="w-2/3 h-full rounded-tl-[2.5rem] px-16 py-8">
@@ -115,7 +115,7 @@ const CreateListing = () => {
             </form>
           </div>
           <div
-            className="w-1/3 h-full rounded-tr-[2.5rem] shadow-xl"
+            className="w-1/3 h-full rounded-3xl shadow-xl m-4"
             id="map"
           ></div>
         </div>

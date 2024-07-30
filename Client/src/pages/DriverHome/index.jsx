@@ -6,7 +6,7 @@ import React from "react";
 const DriverHome = () => {
   return (
     <>
-      <div className="bg-black">
+      <div>
         <PassengerNavbar />
         <div className="home-section bg-white text-black h-screen rounded-t-[2.5rem]">
           <div className="flex gap-5 flex-col justify-center items-center py-16">

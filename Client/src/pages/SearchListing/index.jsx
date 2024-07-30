@@ -7,9 +7,9 @@ import React from "react";
 const SearchListing = () => {
   return (
     <>
-      {true && <ListingDetail />}
+      {false && <ListingDetail />}
 
-      <div className="bg-black">
+      <div>
         <PassengerNavbar />
         <div className="flex flex-col gap-10 bg-white text-black h-screen rounded-t-[2.5rem] p-4">
           <form className="bg-gray-100 flex mt-10 mx-10 justify-center rounded-3xl px-20 py-6 gap-8">
