@@ -5,17 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const usePassengerPrivateRoutes = () => {
   const { passenger } = useSelector((state) => state.passenger);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const getPassenger = async () => {
     if (passenger === null) {
-      setLoading(true);
       const response = await getPassengerApi();
       if (response.success) {
         dispatch(setPassenger(response.passenger));
       }
-      setLoading(false);
     }
+    setLoading(false);
   };
   return { getPassenger, loading };
 };
