@@ -12,6 +12,9 @@ import Profile from "./pages/Profile";
 import PassengerHome from "./pages/PassengerHome";
 import SearchListing from "./pages/SearchListing";
 import PassengerPrivateRoutes from "./components/PrivateRoutes/PassengerPrivateRoutes";
+import DriverHome from "./pages/DriverHome";
+import DriverPrivateRoutes from "./components/PrivateRoutes/DriverPrivateRoutes";
+import CreateListing from "./pages/CreateListing";
 
 function App() {
   return (
@@ -32,7 +35,10 @@ function App() {
           </Route>
 
           {/* Driver Routes */}
-          <Route></Route>
+          <Route element={<DriverPrivateRoutes />}>
+            <Route path="/driver/home" element={<DriverHome />} />
+            <Route path="/driver/createListing" element={<CreateListing />} />
+          </Route>
 
           {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>

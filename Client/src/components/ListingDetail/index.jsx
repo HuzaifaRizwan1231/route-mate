@@ -1,37 +1,12 @@
 import React, { useEffect } from "react";
-import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import { Button } from "../ui/button";
-
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiaHV6YWlmYS1yaXp3YW4iLCJhIjoiY2x5NXExd3A2MDJhczJ2cjFnamozOGVtMiJ9.Z57HUmqikHJnZ1iaRuPQmQ";
+import { useMapBox } from "@/hooks/useMapBox";
 
 const ListingDetail = () => {
+  const { loadMap } = useMapBox();
   useEffect(() => {
     try {
-      // Loading map
-      const map = new mapboxgl.Map({
-        container: "map",
-        style: "mapbox://styles/mapbox/streets-v11",
-        center: [0, 0],
-        zoom: 0,
-      });
-
-      //   // Get geoLocateControl
-      //   const currentLocation = new mapboxgl.GeolocateControl({
-      //     positionOptions: {
-      //       enableHighAccuracy: true,
-      //     },
-      //     trackUserLocation: true,
-      //     showUserHeading: true,
-      //   });
-
-      //   // Add geolocate control to the map.
-      //   map.addControl(currentLocation);
-
-      //   // Trigger the geolocate control
-      //   map.on("load", () => {
-      //     currentLocation.trigger();
-      //   });
+      const map = loadMap();
       return () => {
         map.remove();
       };

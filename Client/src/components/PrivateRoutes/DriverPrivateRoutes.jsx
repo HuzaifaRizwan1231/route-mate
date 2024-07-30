@@ -1,7 +1,12 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 const DriverPrivateRoutes = () => {
-  return <div>DriverPrivateRoutes</div>;
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 };
 
 export default DriverPrivateRoutes;
