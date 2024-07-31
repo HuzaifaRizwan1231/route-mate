@@ -1,11 +1,23 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import { useDriverPrivateRoutes } from "@/hooks/useDriverPrivateRoutes";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
 
 const DriverPrivateRoutes = () => {
-  return (
+  const { driver } = useSelector((state) => state.driver);
+  const { getDriver, loading } = useDriverPrivateRoutes();
+  useEffect(() => {
+    getDriver();
+  }, [driver]);
+  if (loading) {
+    return <>Authenticating...</>;
+  }
+  return driver !== null ? (
     <>
       <Outlet />
     </>
+  ) : (
+    <Navigate to="/driver/signin" />
   );
 };
 

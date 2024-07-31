@@ -16,12 +16,16 @@ import DriverHome from "./pages/DriverHome";
 import DriverPrivateRoutes from "./components/PrivateRoutes/DriverPrivateRoutes";
 import CreateListing from "./pages/CreateListing";
 import ListingDetail from "./components/ListingDetail";
+import DriverSignup from "./pages/DriverSignup";
+import DriverLogin from "./pages/DriverLogin";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
+          <Route path="/driver/signup" element={<DriverSignup />} />
+          <Route path="/driver/signin" element={<DriverLogin />} />
           <Route path="/passenger/signup" element={<PassengerSignup />} />
           <Route path="/passenger/signin" element={<PassengerLogin />} />
           <Route path="/" element={<Navigate to="/passenger/home" />} />

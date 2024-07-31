@@ -1,8 +1,8 @@
 import axios from "../config/axios.config";
 
-export const getPassengerApi = async () => {
+export const getDriverApi = async () => {
   try {
-    const response = await axios.get(`/api/passenger/get`);
+    const response = await axios.get(`/api/driver/get`);
     return response.data;
   } catch (error) {
     return { success: false, message: error.message };
