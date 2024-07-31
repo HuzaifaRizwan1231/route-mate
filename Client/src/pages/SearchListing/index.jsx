@@ -2,6 +2,7 @@ import PassengerNavbar from "@/components/PassengerNavbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SearchListing = () => {
   return (
@@ -31,7 +32,10 @@ const SearchListing = () => {
             {/* Card Items */}
             <div className="grid grid-cols-3 gap-5 ">
               {/* Card Item */}
-              <div className="flex flex-col shadow-2xl p-4 rounded-3xl hover:scale-105 transition-transform cursor-pointer">
+              <Link
+                to="/passenger/searchListing/1"
+                className="flex flex-col shadow-2xl p-4 rounded-3xl hover:scale-105 transition-transform cursor-pointer"
+              >
                 {/* Top bar */}
                 <div className="flex gap-2">
                   <div className="border-gray-400 border-[1px] py-1 px-2 rounded-lg font-semibold flex items-center gap-0.5">
@@ -70,7 +74,7 @@ const SearchListing = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,8 +1,8 @@
-import PassengerNavbar from "@/components/PassengerNavbar";
 import React, { useEffect } from "react";
 import { useMapBox } from "@/hooks/useMapBox";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import DriverNavbar from "@/components/DriverNavbar";
 
 const CreateListing = () => {
   const { loadMap, getCurrentLocation } = useMapBox();
@@ -29,8 +29,8 @@ const CreateListing = () => {
   return (
     <>
       <div>
-        <PassengerNavbar />
-        <div className="bg-white h-screen text-black rounded-t-[2.5rem] flex">
+        <DriverNavbar />
+        <div className="bg-white h-screen text-black rounded-[2.5rem] flex">
           <div className="w-2/3 h-full rounded-tl-[2.5rem] px-16 py-8">
             <h1 className="text-4xl font-bold">Create a Listing</h1>
             <form className="grid grid-cols-2 gap-10 py-10">
@@ -114,10 +114,7 @@ const CreateListing = () => {
               </Button>
             </form>
           </div>
-          <div
-            className="w-1/3 h-full rounded-3xl shadow-xl m-4"
-            id="map"
-          ></div>
+          <div className="w-1/3 rounded-3xl shadow-xl m-4" id="map"></div>
         </div>
       </div>
     </>

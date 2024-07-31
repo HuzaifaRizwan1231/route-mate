@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const PassengerNavbar = () => {
-  const { passenger } = useSelector((state) => state.passenger);
+const DriverNavbar = () => {
+  const { driver } = useSelector((state) => state.driver);
   return (
     <>
       <div className="flex text-white bg-black items-center justify-between px-6 py-5 font-normal text-xl rounded-3xl m-4">
@@ -30,7 +30,7 @@ const PassengerNavbar = () => {
               className="w-full h-full rounded-full object-contain"
             />
           </div>
-          <div>{passenger.name}</div>
+          <div>{driver.name}</div>
           <div className="text-base">
             <i class="fa-solid fa-chevron-down"></i>
           </div>
@@ -40,4 +40,4 @@ const PassengerNavbar = () => {
   );
 };
 
-export default PassengerNavbar;
+export default DriverNavbar;

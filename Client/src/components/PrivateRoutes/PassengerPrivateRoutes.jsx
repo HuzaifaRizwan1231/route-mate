@@ -2,6 +2,7 @@ import { usePassengerPrivateRoutes } from "@/hooks/usePassengerPrivateRoutes";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
+import AuthenticationLoader from "../ui/AuthenticationLoader";
 
 const PassengerPrivateRoutes = () => {
   const { passenger } = useSelector((state) => state.passenger);
@@ -11,7 +12,12 @@ const PassengerPrivateRoutes = () => {
   }, [passenger]);
 
   if (loading) {
-    return <>Authenticating...</>;
+    return (
+      <>
+        {" "}
+        <AuthenticationLoader />
+      </>
+    );
   }
   return passenger !== null ? (
     <>

@@ -13,7 +13,7 @@ const PassengerHome = () => {
     <>
       <div>
         <PassengerNavbar />
-        <div className="home-section bg-white text-black h-screen">
+        <div className="home-section text-black h-screen">
           <div className="flex gap-5 flex-col justify-center items-center py-16">
             <h1 className="text-6xl font-bold">Explore a new world!</h1>
             <div className="text-lg text-center">

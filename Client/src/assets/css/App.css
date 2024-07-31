@@ -108,6 +108,7 @@
 
 body {
   @apply poppins-regular;
+   /* background-image: url("../images/carpooling.jpg"); */
 }
 
 ::-webkit-scrollbar {

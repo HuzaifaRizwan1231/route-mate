@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Button } from "../ui/button";
 import { useMapBox } from "@/hooks/useMapBox";
+import { Link } from "react-router-dom";
 
 const ListingDetail = () => {
   const { loadMap } = useMapBox();
@@ -15,11 +16,13 @@ const ListingDetail = () => {
     }
   }, []);
   return (
-    <div className="fixed top-0 right-0 w-[40vw] shadow-xl bg-white h-[100%]">
+    <div className="fixed top-0 right-0 w-[40vw] shadow-xl bg-white h-[100%] ">
       <div className="h-1/2" id="map">
-        <Button className="z-10 fixed rounded-full m-2 ">
-          <i class="fa-solid fa-x"></i>
-        </Button>
+        <Link to="/passenger/searchListing">
+          <Button className="z-10 fixed rounded-full m-2 ">
+            <i class="fa-solid fa-x"></i>
+          </Button>
+        </Link>
       </div>
       <div className="h-1/2 py-4 px-8 flex flex-col gap-4">
         <div>

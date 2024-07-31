@@ -2,6 +2,7 @@ import { useDriverPrivateRoutes } from "@/hooks/useDriverPrivateRoutes";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
+import AuthenticationLoader from "../ui/AuthenticationLoader";
 
 const DriverPrivateRoutes = () => {
   const { driver } = useSelector((state) => state.driver);
@@ -10,7 +11,11 @@ const DriverPrivateRoutes = () => {
     getDriver();
   }, [driver]);
   if (loading) {
-    return <>Authenticating...</>;
+    return (
+      <>
+        <AuthenticationLoader />
+      </>
+    );
   }
   return driver !== null ? (
     <>
