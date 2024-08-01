@@ -1,7 +1,6 @@
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiaHV6YWlmYS1yaXp3YW4iLCJhIjoiY2x5NXExd3A2MDJhczJ2cjFnamozOGVtMiJ9.Z57HUmqikHJnZ1iaRuPQmQ";
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
 export const useMapBox = () => {
   const loadMap = () => {
@@ -12,7 +11,6 @@ export const useMapBox = () => {
       center: [0, 0],
       zoom: 0,
     });
-
     return map;
   };
 
@@ -27,5 +25,44 @@ export const useMapBox = () => {
     });
     return currentLocation;
   };
-  return { loadMap, getCurrentLocation };
+
+  const getDirectionGeoJson = async (coordinates) => {
+    const { start, end } = coordinates;
+    const response = await fetch(
+      `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${
+        start[1]
+      };${end[0]},${end[1]}?steps=false&geometries=geojson&access_token=${
+        import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
+      }`,
+      { method: "GET" }
+    );
+    const jsonResponse = await response.json();
+    const routeReponse = await jsonResponse.routes[0];
+    const route = await routeReponse.geometry.coordinates;
+    const geojson = {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "LineString",
+        coordinates: route,
+      },
+    };
+    return geojson;
+  };
+
+  const getCoordinatesFromText = async () => {
+    const response = await fetch(
+      `https://api.mapbox.com/search/geocode/v6/forward?q=Gulberg&access_token=${
+        import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
+      }`
+    );
+    console.log(response.json());
+  };
+
+  return {
+    loadMap,
+    getCurrentLocation,
+    getCoordinatesFromText,
+    getDirectionGeoJson,
+  };
 };

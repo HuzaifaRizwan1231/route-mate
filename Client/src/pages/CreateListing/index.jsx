@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useMapBox } from "@/hooks/useMapBox";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import DriverNavbar from "@/components/DriverNavbar";
+import { SearchBox } from "@mapbox/search-js-react";
+import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
 const CreateListing = () => {
-  const { loadMap, getCurrentLocation } = useMapBox();
+  const [mapInstance, setMapInstance] = useState();
+  const { loadMap, getCurrentLocation, getDirectionGeoJson } = useMapBox();
   useEffect(() => {
     try {
+      // loading the map
       const map = loadMap();
 
       const currentLocation = getCurrentLocation();
@@ -15,9 +19,86 @@ const CreateListing = () => {
       map.addControl(currentLocation);
 
       // Trigger the geolocate control
-      map.on("load", () => {
+      map.on("load", async () => {
         currentLocation.trigger();
+
+        const geojson = await getDirectionGeoJson({
+          start: [74.283002, 31.418175],
+          end: [74.288856, 31.431781],
+        });
+
+        setMapInstance(map);
+
+        // adding line based on the geojson
+        map.addLayer({
+          id: "route",
+          type: "line",
+          source: {
+            type: "geojson",
+            data: geojson,
+          },
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-color": "#3887be",
+            "line-width": 5,
+            "line-opacity": 0.75,
+          },
+        });
+
+        map.addLayer({
+          id: "start",
+          type: "circle",
+          source: {
+            type: "geojson",
+            data: {
+              type: "FeatureCollection",
+              features: [
+                {
+                  type: "Feature",
+                  properties: {},
+                  geometry: {
+                    type: "Point",
+                    coordinates: [74.283002, 31.418175],
+                  },
+                },
+              ],
+            },
+          },
+          paint: {
+            "circle-radius": 10,
+            "circle-color": "#f30",
+          },
+        });
+
+        map.addLayer({
+          id: "end",
+          type: "circle",
+          source: {
+            type: "geojson",
+            data: {
+              type: "FeatureCollection",
+              features: [
+                {
+                  type: "Feature",
+                  properties: {},
+                  geometry: {
+                    type: "Point",
+                    coordinates: [74.288856, 31.431781],
+                  },
+                },
+              ],
+            },
+          },
+          paint: {
+            "circle-radius": 10,
+            "circle-color": "#f30",
+          },
+        });
       });
+
       return () => {
         map.remove();
       };
@@ -74,9 +155,16 @@ const CreateListing = () => {
                 <div className="text-xl text-gray-400 font-semibold">
                   Start Location
                 </div>
-                <Input
+                {/* <Input
                   className="text-2xl py-6 px-4"
                   placeholder="e.g. black"
+                /> */}
+                <SearchBox
+                  value=""
+                  accessToken={import.meta.env.VITE_MAPBOX_ACCESS_TOKEN}
+                  map={mapInstance}
+                  mapboxgl={mapboxgl}
+                  marker
                 />
               </div>
               {/* One Item */}
@@ -84,9 +172,16 @@ const CreateListing = () => {
                 <div className="text-xl text-gray-400 font-semibold">
                   End Location
                 </div>
-                <Input
+                {/* <Input
                   className="text-2xl py-6 px-4"
                   placeholder="e.g. black"
+                /> */}
+                <SearchBox
+                  value=""
+                  accessToken={import.meta.env.VITE_MAPBOX_ACCESS_TOKEN}
+                  map={mapInstance}
+                  mapboxgl={mapboxgl}
+                  marker
                 />
               </div>
               {/* One Item */}
