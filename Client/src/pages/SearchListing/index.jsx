@@ -1,10 +1,27 @@
 import PassengerNavbar from "@/components/PassengerNavbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSearchListing } from "./useSearchListing";
+import { useSelector } from "react-redux";
+import CustomLoader from "@/components/ui/CustomLoader";
 
 const SearchListing = () => {
+  const { listing } = useSelector((state) => state.listing);
+  const { getListingsByLocation } = useSearchListing();
+  useEffect(() => {
+    getListingsByLocation();
+  }, []);
+
+  if (!listing) {
+    return (
+      <>
+        <CustomLoader loadingText="Loading Listings..." />
+      </>
+    );
+  }
+
   return (
     <>
       <div>
@@ -32,49 +49,57 @@ const SearchListing = () => {
             {/* Card Items */}
             <div className="grid grid-cols-3 gap-5 ">
               {/* Card Item */}
-              <Link
-                to="/passenger/searchListing/1"
-                className="flex flex-col shadow-2xl p-4 rounded-3xl hover:scale-105 transition-transform cursor-pointer"
-              >
-                {/* Top bar */}
-                <div className="flex gap-2">
-                  <div className="border-gray-400 border-[1px] py-1 px-2 rounded-lg font-semibold flex items-center gap-0.5">
-                    <i class="fa-solid fa-star text-yellow-500"></i>
-                    4.8 <span className="text-xs font-normal">(12)</span>
-                  </div>
-                  <div className="border-gray-400 border-[1px] py-1 px-2 rounded-lg bg-green-200 text-green-950">
-                    Available now
-                  </div>
-                  <div className="py-1 px-2 rounded-lg">
-                    <i class="fa-sharp fa-solid fa-person-walking"></i> 120m
-                  </div>
-                </div>
-                {/* IMage */}
-                <div className="flex justify-center items-center">
-                  <img
-                    src="/src/assets/images/car.webp"
-                    alt=""
-                    className="object-contain w-full h-full rounded-3xl"
-                  />
-                </div>
-                {/* Info */}
-                <div>
-                  {/* Company  */}
-                  <div className="text-sm text-gray-400 font-semibold">
-                    HONDA
-                  </div>
-                  {/* Name and price */}
-                  <div className="flex justify-between font-semibold text-lg">
-                    <div>Civic Cruiser</div>
-                    <div>
-                      Rs. 100{" "}
-                      <span className="text-xs font-normal text-gray-400">
-                        / per trip
-                      </span>
+
+              {listing.map((listingItem) => (
+                <Link
+                  to={`/passenger/searchListing/${listingItem.listingId}`}
+                  className="flex flex-col shadow-2xl p-4 rounded-3xl hover:scale-105 transition-transform cursor-pointer"
+                >
+                  {/* Top bar */}
+                  <div className="flex gap-2">
+                    <div className="border-gray-400 border-[1px] py-1 px-2 rounded-lg font-semibold flex items-center gap-0.5">
+                      <i class="fa-solid fa-star text-yellow-500"></i>
+                      {listingItem.rating}
+                      {/*  <span className="text-xs font-normal">(12)</span> */}
+                    </div>
+                    <div className="border-gray-400 border-[1px] py-1 px-2 rounded-lg bg-green-200 text-green-950">
+                      Available now
+                    </div>
+                    <div className="py-1 px-2 rounded-lg">
+                      <i class="fa-sharp fa-solid fa-person-walking"></i> 120m
                     </div>
                   </div>
-                </div>
-              </Link>
+                  {/* IMage */}
+                  <div className="flex justify-center items-center">
+                    <img
+                      src={
+                        listingItem.type === "car"
+                          ? "/src/assets/images/car.webp"
+                          : "/src/assets/images/bike.webp"
+                      }
+                      alt=""
+                      className="object-contain w-full h-full rounded-3xl"
+                    />
+                  </div>
+                  {/* Info */}
+                  <div>
+                    {/* Company  */}
+                    <div className="text-sm text-gray-400 font-semibold">
+                      VEHICLE
+                    </div>
+                    {/* Name and price */}
+                    <div className="flex justify-between font-semibold text-lg">
+                      <div>{listingItem.vehicleName}</div>
+                      <div>
+                        Rs. {listingItem.price}{" "}
+                        <span className="text-xs font-normal text-gray-400">
+                          / per trip
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

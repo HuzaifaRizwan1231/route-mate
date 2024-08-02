@@ -2,7 +2,7 @@ import { usePassengerPrivateRoutes } from "@/hooks/usePassengerPrivateRoutes";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-import AuthenticationLoader from "../ui/AuthenticationLoader";
+import CustomLoader from "../ui/CustomLoader";
 
 const PassengerPrivateRoutes = () => {
   const { passenger } = useSelector((state) => state.passenger);
@@ -15,7 +15,7 @@ const PassengerPrivateRoutes = () => {
     return (
       <>
         {" "}
-        <AuthenticationLoader />
+        <CustomLoader loadingText="Authenticating..." />
       </>
     );
   }

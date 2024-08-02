@@ -1,7 +1,8 @@
 import React from "react";
 import { BarLoader } from "react-spinners";
 
-const AuthenticationLoader = () => {
+const CustomLoader = (props) => {
+  const { loadingText } = props;
   return (
     <>
       <div className="flex flex-col h-screen items-center justify-center gap-5">
@@ -10,10 +11,10 @@ const AuthenticationLoader = () => {
           <h1 className="text-2xl">Route Mate</h1>
         </div>
         <BarLoader width={200} />
-        <span className="animate-pulse">Authenticating...</span>
+        <span className="animate-pulse">{loadingText}</span>
       </div>
     </>
   );
 };
 
-export default AuthenticationLoader;
+export default CustomLoader;

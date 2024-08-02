@@ -56,4 +56,23 @@ const createListing = async (req, res) => {
   }
 };
 
-module.exports = { createListing };
+const getListings = async (req, res) => {
+  try {
+    db.query(
+      "SELECT Listing.*, Driver.driverId, Driver.name AS driverName, Driver.email, Driver.password, Driver.CNIC, Driver.licenseNumber, rating, phone, Vehicle.name AS vehicleName, registrationNumber, color, type FROM Listing JOIN Driver ON Listing.driverId = Driver.driverId JOIN Vehicle ON Vehicle.listingId = Listing.listingId",
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({ success: false, error: err.message });
+        }
+        return res.status(200).send({
+          success: true,
+          listing: result,
+        });
+      }
+    );
+  } catch (error) {
+    res.status(400).send({ success: false, error: error.message });
+  }
+};
+
+module.exports = { createListing, getListings };

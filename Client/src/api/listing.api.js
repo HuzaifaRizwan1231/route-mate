@@ -8,3 +8,12 @@ export const createListingApi = async (listing) => {
     return { success: false, message: error.message };
   }
 };
+
+export const getListingsApi = async () => {
+  try {
+    const response = await axios.get(`/api/listing/get`);
+    return response.data;
+  } catch (error) {
+    return { success: false, message: error.message };
+  }
+};
