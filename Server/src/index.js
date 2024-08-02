@@ -2,6 +2,7 @@ const authRoutes = require("../routes/auth.routes");
 const profileRoutes = require("../routes/profile.routes");
 const passengerRoutes = require("../routes/passenger.routes");
 const driverRoutes = require("../routes/driver.routes");
+const listingRoutes = require("../routes/listing.routes");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
@@ -29,6 +30,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/passenger", passengerRoutes);
 app.use("/api/driver", driverRoutes);
+app.use("/api/listing", listingRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);

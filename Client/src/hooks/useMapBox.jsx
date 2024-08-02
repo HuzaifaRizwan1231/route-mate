@@ -50,19 +50,9 @@ export const useMapBox = () => {
     return geojson;
   };
 
-  const getCoordinatesFromText = async () => {
-    const response = await fetch(
-      `https://api.mapbox.com/search/geocode/v6/forward?q=Gulberg&access_token=${
-        import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
-      }`
-    );
-    console.log(response.json());
-  };
-
   return {
     loadMap,
     getCurrentLocation,
-    getCoordinatesFromText,
     getDirectionGeoJson,
   };
 };
