@@ -8,8 +8,8 @@ export const useMapBox = () => {
     const map = new mapboxgl.Map({
       container: "map",
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [0, 0],
-      zoom: 0,
+      center: [74.3587, 31.5204],
+      zoom: 10,
     });
     return map;
   };
