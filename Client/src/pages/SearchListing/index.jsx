@@ -19,7 +19,7 @@ const SearchListing = () => {
       <div>
         <PassengerNavbar />
         <div className="flex flex-col gap-10 bg-white text-black h-screen rounded-t-[2.5rem] p-4">
-          <form className="bg-gray-100 flex mt-10 mx-10 justify-center rounded-3xl px-20 py-6 gap-8">
+          <form className=" flex mt-10 mx-10 justify-center rounded-3xl px-20 py-6 gap-8">
             <div className="flex gap-2 items-center">
               <div className="flex items-center justify-center bg-gray-800 text-white w-12 h-10 rounded-md">
                 <i class="fa-solid fa-location-crosshairs"></i>
