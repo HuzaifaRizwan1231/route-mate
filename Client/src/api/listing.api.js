@@ -17,3 +17,12 @@ export const getListingsApi = async () => {
     return { success: false, message: error.message };
   }
 };
+
+export const getListingByListingIdApi = async (listingId) => {
+  try {
+    const response = await axios.post(`/api/listing/getById`, { listingId });
+    return response.data;
+  } catch (error) {
+    return { success: false, message: error.message };
+  }
+};
