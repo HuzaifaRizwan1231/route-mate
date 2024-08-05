@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { Link, useParams } from "react-router-dom";
 import MapBox from "../MapBox";
 import { useListingDetail } from "./useListingDetail";
+import ListingDetailSkeleton from "../ui/Skeleton/ListingDetailSkeleton";
 
 const ListingDetail = () => {
   const { listingId } = useParams();
@@ -15,7 +16,9 @@ const ListingDetail = () => {
   return (
     <div className="fixed top-0 right-0 w-[40vw] shadow-xl bg-white h-[100%] z-10 ">
       {!filteredListingItem ? (
-        <>loading</>
+        <>
+          <ListingDetailSkeleton />
+        </>
       ) : (
         <>
           <div className="h-1/2" id="map">

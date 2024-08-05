@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSearchListing } from "./useSearchListing";
 import { useSelector } from "react-redux";
+import ListingCardSkeleton from "@/components/ui/Skeleton/ListingCardSkeleton";
 
 const SearchListing = () => {
   const { listing } = useSelector((state) => state.listing);
@@ -42,7 +43,13 @@ const SearchListing = () => {
               {/* Card Item */}
 
               {!listing ? (
-                <>loading</>
+                <>
+                  {Array(6)
+                    .fill(0)
+                    .map(() => (
+                      <ListingCardSkeleton />
+                    ))}
+                </>
               ) : (
                 <>
                   {listing.map((listingItem) => (
