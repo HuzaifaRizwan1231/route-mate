@@ -65,7 +65,7 @@ const ListingDetail = () => {
                   </div>
                   <div className="font-semibold text-lg">
                     {" "}
-                    {filteredListingItem.startLocation}
+                    {filteredListingItem.startLocationName}
                   </div>
                 </div>
 
@@ -75,7 +75,7 @@ const ListingDetail = () => {
                     Destination
                   </div>
                   <div className="font-semibold text-lg">
-                    {filteredListingItem.endLocation}
+                    {filteredListingItem.endLocationName}
                   </div>
                 </div>
               </div>
