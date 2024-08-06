@@ -129,9 +129,42 @@ const bookListing = (req, res) => {
         if (err) {
           return res.status(400).send({ success: false, error: err.message });
         }
+
+        db.query(
+          "UPDATE Listing SET status = 'active' WHERE listingId = ?",
+          [listingId],
+          (err, result) => {
+            if (err) {
+              return res
+                .status(400)
+                .send({ success: false, error: err.message });
+            }
+
+            return res.status(200).send({
+              success: true,
+              message: "Listing Booked Successfully",
+            });
+          }
+        );
+      }
+    );
+  } catch (error) {
+    res.status(400).send({ success: false, error: error.message });
+  }
+};
+
+const getPassengerListings = (req, res) => {
+  try {
+    db.query(
+      "SELECT Listing.*, Driver.driverId, Driver.name AS driverName, Driver.email, Driver.password, Driver.CNIC, Driver.licenseNumber, rating, phone, Vehicle.name AS vehicleName, registrationNumber, color, type FROM Listing JOIN Driver ON Listing.driverId = Driver.driverId JOIN Vehicle ON Vehicle.listingId = Listing.listingId JOIN PassengerListings ON PassengerListings.listingId = Listing.listingId WHERE PassengerListings.passengerId = ?",
+      [req.passengerId],
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({ success: false, error: err.message });
+        }
         return res.status(200).send({
           success: true,
-          message: "Listing Booked Successfully",
+          listing: result,
         });
       }
     );
@@ -145,4 +178,5 @@ module.exports = {
   getListingById,
   getDriverListings,
   bookListing,
+  getPassengerListings,
 };

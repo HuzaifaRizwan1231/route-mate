@@ -52,3 +52,12 @@ export const bookListingApi = async (listingId) => {
     return { success: false, message: error.message };
   }
 };
+
+export const getPassengerListingsApi = async () => {
+  try {
+    const response = await axios.get(`/api/listing/getPassengerListings`);
+    return response.data;
+  } catch (error) {
+    return { success: false, message: error.message };
+  }
+};

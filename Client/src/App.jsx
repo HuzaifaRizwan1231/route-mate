@@ -19,6 +19,7 @@ import ListingDetail from "./components/ListingDetail";
 import DriverSignup from "./pages/DriverSignup";
 import DriverLogin from "./pages/DriverLogin";
 import DriverCurrentListings from "./pages/DriverCurrentListings";
+import PassengerCurrentListings from "./pages/PassengerCurrentListings";
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
           {/* Passenger Routes */}
           <Route element={<PassengerPrivateRoutes />}>
             <Route path="/passenger/home" element={<PassengerHome />} />
+            <Route
+              path="/passenger/currentListings"
+              element={<PassengerCurrentListings />}
+            />
             <Route
               path="/passenger/searchListing"
               element={<SearchListing />}

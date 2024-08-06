@@ -32,7 +32,7 @@ export const useListingDetail = () => {
 
     if (response.success) {
       console.log(response.message);
-      navigate("/passenger/home");
+      navigate("/passenger/currentListings");
     }
   };
 

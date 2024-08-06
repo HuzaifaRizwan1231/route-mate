@@ -6,6 +6,7 @@ const {
   getListingById,
   getDriverListings,
   bookListing,
+  getPassengerListings,
 } = require("../controllers/listing.controllers");
 const {
   authenticatePassenger,
@@ -18,5 +19,10 @@ router.get("/get", authenticatePassenger, getListings);
 router.post("/getById", authenticatePassenger, getListingById);
 router.get("/getDriverListings", authenticateDriver, getDriverListings);
 router.post("/book", authenticatePassenger, bookListing);
+router.get(
+  "/getPassengerListings",
+  authenticatePassenger,
+  getPassengerListings
+);
 
 module.exports = router;
