@@ -55,7 +55,7 @@ const SearchListing = () => {
                   {listing.map((listingItem) => (
                     <Link
                       to={`/passenger/searchListing/${listingItem.listingId}`}
-                      className="flex flex-col shadow-2xl p-4 rounded-3xl hover:scale-105 transition-transform cursor-pointer"
+                      className="flex flex-col border border-gray-200 shadow-lg p-4 rounded-3xl hover:scale-105 transition-transform cursor-pointer"
                     >
                       {/* Top bar */}
                       <div className="flex gap-2">

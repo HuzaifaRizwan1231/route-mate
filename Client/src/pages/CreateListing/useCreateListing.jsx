@@ -1,4 +1,5 @@
 import { createListingApi } from "@/api/listing.api";
+import { convertCoordsToLocationApi } from "@/api/mapbox.api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -53,8 +54,20 @@ export const useCreateListing = () => {
       return;
     }
 
+    // adding location names
+    const startLocationName = await convertCoordsToLocationApi(
+      listingDetails.startCoordinates
+    );
+    const endLocationName = await convertCoordsToLocationApi(
+      listingDetails.endCoordinates
+    );
+
     // Create the listing here
-    const response = await createListingApi(listingDetails);
+    const response = await createListingApi(
+      listingDetails,
+      startLocationName,
+      endLocationName
+    );
 
     if (!response.success) {
       setError(response.message);

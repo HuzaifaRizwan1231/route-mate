@@ -18,6 +18,7 @@ import CreateListing from "./pages/CreateListing";
 import ListingDetail from "./components/ListingDetail";
 import DriverSignup from "./pages/DriverSignup";
 import DriverLogin from "./pages/DriverLogin";
+import DriverCurrentListings from "./pages/DriverCurrentListings";
 
 function App() {
   return (
@@ -51,6 +52,10 @@ function App() {
           <Route element={<DriverPrivateRoutes />}>
             <Route path="/driver/home" element={<DriverHome />} />
             <Route path="/driver/createListing" element={<CreateListing />} />
+            <Route
+              path="/driver/currentListings"
+              element={<DriverCurrentListings />}
+            />
           </Route>
 
           {/* <Route path="/profile" element={<Profile />} /> */}

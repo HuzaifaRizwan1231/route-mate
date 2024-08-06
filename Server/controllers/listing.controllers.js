@@ -13,14 +13,17 @@ const createListing = async (req, res) => {
       contact,
     } = req.body.listing;
 
-    console.log(JSON.stringify(startCoordinates));
+    const { startLocationName, endLocationName } = req.body;
+
     db.query(
-      "INSERT INTO Listing(startLocation, endLocation, price, driverId) VALUES (?,?,?,?)",
+      "INSERT INTO Listing(startLocation, endLocation, price, driverId, startLocationName, endLocationName) VALUES (?,?,?,?,?,?)",
       [
         JSON.stringify(startCoordinates),
         JSON.stringify(endCoordinates),
         price,
         req.driverId,
+        startLocationName,
+        endLocationName,
       ],
       (err, result) => {
         if (err) {
@@ -95,4 +98,29 @@ const getListingById = async (req, res) => {
     res.status(400).send({ success: false, error: error.message });
   }
 };
-module.exports = { createListing, getListings, getListingById };
+
+const getDriverListings = async (req, res) => {
+  try {
+    db.query(
+      "SELECT Listing.*, Driver.driverId, Driver.name AS driverName, Driver.email, Driver.password, Driver.CNIC, Driver.licenseNumber, rating, phone, Vehicle.name AS vehicleName, registrationNumber, color, type FROM Listing JOIN Driver ON Listing.driverId = Driver.driverId JOIN Vehicle ON Vehicle.listingId = Listing.listingId WHERE Listing.driverId = ?",
+      [req.driverId],
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({ success: false, error: err.message });
+        }
+        return res.status(200).send({
+          success: true,
+          listing: result,
+        });
+      }
+    );
+  } catch (error) {
+    res.status(400).send({ success: false, error: error.message });
+  }
+};
+module.exports = {
+  createListing,
+  getListings,
+  getListingById,
+  getDriverListings,
+};

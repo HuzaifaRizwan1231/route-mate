@@ -33,7 +33,7 @@ const ListingDetail = () => {
               setMapInstance={(map) => {}}
             />
           </div>
-          <div className="h-1/2 py-4 px-8 flex flex-col gap-4">
+          <div className="h-1/2 overflow-y-auto py-4 px-8 flex flex-col gap-4">
             <div>
               <div className="flex justify-between items-center">
                 <h1 className="font-bold text-2xl">Listing Details</h1>
