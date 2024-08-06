@@ -118,9 +118,31 @@ const getDriverListings = async (req, res) => {
     res.status(400).send({ success: false, error: error.message });
   }
 };
+
+const bookListing = (req, res) => {
+  try {
+    const { listingId } = req.body;
+    db.query(
+      "INSERT INTO PassengerListings (listingId, passengerId) VALUES(?,?)",
+      [listingId, req.passengerId],
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({ success: false, error: err.message });
+        }
+        return res.status(200).send({
+          success: true,
+          message: "Listing Booked Successfully",
+        });
+      }
+    );
+  } catch (error) {
+    res.status(400).send({ success: false, error: error.message });
+  }
+};
 module.exports = {
   createListing,
   getListings,
   getListingById,
   getDriverListings,
+  bookListing,
 };

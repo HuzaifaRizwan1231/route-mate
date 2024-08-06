@@ -7,7 +7,8 @@ import ListingDetailSkeleton from "../ui/Skeleton/ListingDetailSkeleton";
 
 const ListingDetail = () => {
   const { listingId } = useParams();
-  const { getListingByListingId, filteredListingItem } = useListingDetail();
+  const { getListingByListingId, filteredListingItem, bookListing } =
+    useListingDetail();
 
   useEffect(() => {
     getListingByListingId();
@@ -37,7 +38,7 @@ const ListingDetail = () => {
             <div>
               <div className="flex justify-between items-center">
                 <h1 className="font-bold text-2xl">Listing Details</h1>
-                <Button>Book now</Button>
+                <Button onClick={bookListing}>Book now</Button>
               </div>
               <div className="grid grid-cols-2 gap-7 py-4">
                 {/* One Item */}

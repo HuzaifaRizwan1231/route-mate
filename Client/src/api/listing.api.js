@@ -43,3 +43,12 @@ export const getDriverListingsApi = async () => {
     return { success: false, message: error.message };
   }
 };
+
+export const bookListingApi = async (listingId) => {
+  try {
+    const response = await axios.post(`/api/listing/book`, { listingId });
+    return response.data;
+  } catch (error) {
+    return { success: false, message: error.message };
+  }
+};

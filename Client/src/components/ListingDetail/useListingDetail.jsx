@@ -1,10 +1,11 @@
-import { getListingByListingIdApi } from "@/api/listing.api";
+import { bookListingApi, getListingByListingIdApi } from "@/api/listing.api";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const useListingDetail = () => {
   const { listingId } = useParams();
   const [filteredListingItem, setFilteredListingItem] = useState(null);
+  const navigate = useNavigate();
 
   // funtion to get listing that is set in the url
   const getListingByListingId = async () => {
@@ -26,5 +27,14 @@ export const useListingDetail = () => {
     }
   };
 
-  return { getListingByListingId, filteredListingItem };
+  const bookListing = async () => {
+    const response = await bookListingApi(listingId);
+
+    if (response.success) {
+      console.log(response.message);
+      navigate("/passenger/home");
+    }
+  };
+
+  return { getListingByListingId, filteredListingItem, bookListing };
 };
