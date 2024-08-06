@@ -68,6 +68,7 @@ const DriverCurrentListings = () => {
                 ) : (
                   activeDriverListings.map((listingItem) => (
                     <CurrentListingCard
+                      listingId={listingItem.listingId}
                       rating={listingItem.rating}
                       vehicleName={listingItem.vehicleName}
                       price={listingItem.price}
@@ -85,6 +86,7 @@ const DriverCurrentListings = () => {
               ) : (
                 pendingDriverListings.map((listingItem) => (
                   <CurrentListingCard
+                    listingId={listingItem.listingId}
                     rating={listingItem.rating}
                     vehicleName={listingItem.vehicleName}
                     price={listingItem.price}
