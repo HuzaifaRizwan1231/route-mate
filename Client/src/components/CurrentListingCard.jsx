@@ -13,6 +13,7 @@ const CurrentListingCard = (props) => {
     phone,
     startLocation,
     endLocation,
+    listingId,
   } = props;
   return (
     <>
@@ -80,6 +81,7 @@ const CurrentListingCard = (props) => {
         {/* Card Map Section */}
         <div className="w-1/2">
           <MapBox
+            id={listingId}
             startCoordinates={JSON.parse(startLocation)}
             endCoordinates={JSON.parse(endLocation)}
             setMapInstance={(map) => {}}

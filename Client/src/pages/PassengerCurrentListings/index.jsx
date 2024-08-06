@@ -27,6 +27,7 @@ const PassengerCurrentListings = () => {
               ) : (
                 passengerListings.map((listingItem) => (
                   <CurrentListingCard
+                    listingId={listingItem.listingId}
                     rating={listingItem.rating}
                     vehicleName={listingItem.vehicleName}
                     price={listingItem.price}

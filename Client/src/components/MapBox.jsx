@@ -2,13 +2,13 @@ import { useMapBox } from "@/hooks/useMapBox";
 import React, { useEffect } from "react";
 
 const MapBox = (props) => {
-  const { startCoordinates, endCoordinates, setMapInstance } = props;
+  const { startCoordinates, endCoordinates, setMapInstance, id } = props;
 
   const { loadMap, getCurrentLocation, getDirectionGeoJson } = useMapBox();
   useEffect(() => {
     try {
       // loading the map
-      const map = loadMap();
+      const map = loadMap(id);
 
       const currentLocation = getCurrentLocation();
       // Add geolocate control to the map.
@@ -126,7 +126,7 @@ const MapBox = (props) => {
       console.error(error);
     }
   }, [startCoordinates, endCoordinates]);
-  return <div className={`h-full rounded-3xl`} id="map"></div>;
+  return <div className={`h-full rounded-3xl`} id={`map-${id}`}></div>;
 };
 
 export default MapBox;

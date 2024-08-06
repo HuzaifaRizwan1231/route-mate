@@ -3,10 +3,10 @@ import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loade
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
 export const useMapBox = () => {
-  const loadMap = () => {
+  const loadMap = (id) => {
     // Loading map
     const map = new mapboxgl.Map({
-      container: "map",
+      container: `map-${id}`,
       style: "mapbox://styles/mapbox/streets-v11",
       center: [74.3587, 31.5204],
       zoom: 10,
