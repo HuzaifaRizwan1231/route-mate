@@ -6,31 +6,54 @@ import { Link } from "react-router-dom";
 import { useSearchListing } from "./useSearchListing";
 import { useSelector } from "react-redux";
 import ListingCardSkeleton from "@/components/ui/Skeleton/ListingCardSkeleton";
+import { SearchBox } from "@mapbox/search-js-react";
 
 const SearchListing = () => {
   const { listing } = useSelector((state) => state.listing);
-  const { getListingsByLocation } = useSearchListing();
-  useEffect(() => {
-    getListingsByLocation();
-  }, []);
+  const { getListingsByLocation, loading, setCoordinates, coordinates } =
+    useSearchListing();
+  useEffect(() => {}, []);
 
   return (
     <>
       <div>
         <PassengerNavbar />
         <div className="flex flex-col gap-10 bg-white text-black h-screen rounded-t-[2.5rem] p-4">
-          <form className=" flex mt-10 mx-10 justify-center rounded-3xl px-20 py-6 gap-8">
+          <form
+            className=" flex mt-10 mx-10 justify-center rounded-3xl px-20 py-6 gap-8"
+            onSubmit={getListingsByLocation}
+          >
             <div className="flex gap-2 items-center">
               <div className="flex items-center justify-center bg-gray-800 text-white w-12 h-10 rounded-md">
                 <i class="fa-solid fa-location-crosshairs"></i>
               </div>
-              <Input required type="text" placeholder="Start Location" />
+              <SearchBox
+                placeholder="Enter start location"
+                value=""
+                accessToken={import.meta.env.VITE_MAPBOX_ACCESS_TOKEN}
+                onRetrieve={(res) =>
+                  setCoordinates({
+                    ...coordinates,
+                    start: res.features[0].geometry.coordinates,
+                  })
+                }
+              />
             </div>
             <div className="flex gap-2 items-center">
               <div className="flex items-center justify-center bg-gray-800 text-white w-12 h-10 rounded-md">
                 <i class="fa-solid fa-location-dot"></i>
               </div>
-              <Input required type="text" placeholder="End Location" />
+              <SearchBox
+                placeholder="Enter end location"
+                value=""
+                accessToken={import.meta.env.VITE_MAPBOX_ACCESS_TOKEN}
+                onRetrieve={(res) =>
+                  setCoordinates({
+                    ...coordinates,
+                    end: res.features[0].geometry.coordinates,
+                  })
+                }
+              />
             </div>
             <Button className="bg-green-600 hover:bg-green-900">Search</Button>
           </form>
@@ -42,7 +65,7 @@ const SearchListing = () => {
             <div className="grid grid-cols-3 gap-5 ">
               {/* Card Item */}
 
-              {!listing ? (
+              {loading ? (
                 <>
                   {Array(6)
                     .fill(0)
@@ -50,6 +73,10 @@ const SearchListing = () => {
                       <ListingCardSkeleton />
                     ))}
                 </>
+              ) : !listing ? (
+                <>Enter start and end locations to search</>
+              ) : listing.length === 0 ? (
+                <>No Results Found</>
               ) : (
                 <>
                   {listing.map((listingItem) => (

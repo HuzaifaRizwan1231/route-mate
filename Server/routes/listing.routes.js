@@ -15,7 +15,7 @@ const {
 const router = Router();
 
 router.post("/create", authenticateDriver, createListing);
-router.get("/get", authenticatePassenger, getListings);
+router.post("/get", authenticatePassenger, getListings);
 router.post("/getById", authenticatePassenger, getListingById);
 router.get("/getDriverListings", authenticateDriver, getDriverListings);
 router.post("/book", authenticatePassenger, bookListing);

@@ -61,8 +61,10 @@ const createListing = async (req, res) => {
 
 const getListings = async (req, res) => {
   try {
+    const { start, end } = req.body.coordinates;
     db.query(
-      "SELECT Listing.*, Driver.driverId, Driver.name AS driverName, Driver.email, Driver.password, Driver.CNIC, Driver.licenseNumber, rating, phone, Vehicle.name AS vehicleName, registrationNumber, color, type FROM Listing JOIN Driver ON Listing.driverId = Driver.driverId JOIN Vehicle ON Vehicle.listingId = Listing.listingId",
+      "SELECT Listing.*, Driver.driverId, Driver.name AS driverName, Driver.email, Driver.password, Driver.CNIC, Driver.licenseNumber, rating, phone, Vehicle.name AS vehicleName, registrationNumber, color, type, (6371000 * acos(cos(radians(?)) * cos(radians(JSON_EXTRACT(Listing.startLocation, '$[0]'))) *cos(radians(JSON_EXTRACT(Listing.startLocation, '$[1]')) - radians(?)) + sin(radians(?)) * sin(radians(JSON_EXTRACT(Listing.startLocation, '$[0]'))))) AS distanceFromStart, (6371000 * acos(cos(radians(?)) * cos(radians(JSON_EXTRACT(Listing.endLocation, '$[0]'))) *cos(radians(JSON_EXTRACT(Listing.endLocation, '$[1]')) - radians(?)) + sin(radians(?)) * sin(radians(JSON_EXTRACT(Listing.endLocation, '$[0]'))))) AS distanceFromEnd  FROM Listing JOIN Driver ON Listing.driverId = Driver.driverId JOIN Vehicle ON Vehicle.listingId = Listing.listingId HAVING distanceFromStart < 5000 AND distanceFromEnd < 5000",
+      [start[0], start[1], start[0], end[0], end[1], end[0]],
       (err, result) => {
         if (err) {
           return res.status(400).send({ success: false, error: err.message });

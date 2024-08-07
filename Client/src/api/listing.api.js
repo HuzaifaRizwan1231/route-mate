@@ -17,12 +17,12 @@ export const createListingApi = async (
   }
 };
 
-export const getListingsApi = async () => {
+export const getListingsApi = async (coordinates) => {
   try {
-    const response = await axios.get(`/api/listing/get`);
+    const response = await axios.post(`/api/listing/get`, { coordinates });
     return response.data;
   } catch (error) {
-    return { success: false, message: error.message };
+    return { success: false, message: error };
   }
 };
 
