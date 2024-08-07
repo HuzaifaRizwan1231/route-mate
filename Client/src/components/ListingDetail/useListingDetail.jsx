@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export const useListingDetail = () => {
   const { listingId } = useParams();
   const [filteredListingItem, setFilteredListingItem] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // funtion to get listing that is set in the url
@@ -28,13 +29,15 @@ export const useListingDetail = () => {
   };
 
   const bookListing = async () => {
+    setLoading(true);
     const response = await bookListingApi(listingId);
 
     if (response.success) {
       console.log(response.message);
       navigate("/passenger/currentListings");
     }
+    setLoading(false);
   };
 
-  return { getListingByListingId, filteredListingItem, bookListing };
+  return { getListingByListingId, filteredListingItem, bookListing, loading };
 };

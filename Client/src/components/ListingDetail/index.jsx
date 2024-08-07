@@ -4,10 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import MapBox from "../MapBox";
 import { useListingDetail } from "./useListingDetail";
 import ListingDetailSkeleton from "../ui/Skeleton/ListingDetailSkeleton";
+import { Loader2 } from "lucide-react";
 
 const ListingDetail = () => {
   const { listingId } = useParams();
-  const { getListingByListingId, filteredListingItem, bookListing } =
+  const { getListingByListingId, filteredListingItem, bookListing, loading } =
     useListingDetail();
 
   useEffect(() => {
@@ -40,12 +41,13 @@ const ListingDetail = () => {
                 <h1 className="font-bold text-2xl">Listing Details</h1>
 
                 <Button
-                  disabled={filteredListingItem.status === "active"}
+                  disabled={filteredListingItem.status === "active" || loading}
                   onClick={bookListing}
                   className={
                     filteredListingItem.status === "active" && "bg-red-600"
                   }
                 >
+                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   {filteredListingItem.status === "active"
                     ? "Booked"
                     : "Book now"}
@@ -78,7 +80,7 @@ const ListingDetail = () => {
                   <div className="text-sm text-gray-400 font-semibold">
                     Pickup
                   </div>
-                  <div className="font-semibold text-lg">
+                  <div className="font-semibold text-lg text-green-600">
                     {" "}
                     {filteredListingItem.startLocationName}
                   </div>
@@ -89,7 +91,7 @@ const ListingDetail = () => {
                   <div className="text-sm text-gray-400 font-semibold">
                     Destination
                   </div>
-                  <div className="font-semibold text-lg">
+                  <div className="font-semibold text-lg text-red-600">
                     {filteredListingItem.endLocationName}
                   </div>
                 </div>
