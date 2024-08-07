@@ -56,7 +56,10 @@ const CurrentListingCard = (props) => {
             {/* One Item */}
             <div className="flex flex-col">
               <div className="text-sm text-gray-400 font-semibold">Pickup</div>
-              <div className="font-semibold text-lg"> {startLocationName}</div>
+              <div className="font-semibold text-lg text-green-600">
+                {" "}
+                {startLocationName}
+              </div>
             </div>
 
             {/* One Item */}
@@ -64,7 +67,9 @@ const CurrentListingCard = (props) => {
               <div className="text-sm text-gray-400 font-semibold">
                 Destination
               </div>
-              <div className="font-semibold text-lg">{endLocationName}</div>
+              <div className="font-semibold text-lg text-red-600">
+                {endLocationName}
+              </div>
             </div>
 
             {/* One Item */}

@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import React, { useEffect } from "react";
 import { useDriverCurrentListings } from "./useDriverCurrentListings";
 import CurrentListingCard from "@/components/CurrentListingCard";
+import { calculateDistance } from "@/utils/calculateDistance.utils";
+import CurrentListingSkeleton from "@/components/ui/Skeleton/CurrentListingSkeleton";
+import SearchMessage from "@/components/SearchMessage";
 
 const DriverCurrentListings = () => {
   const {
@@ -61,10 +64,19 @@ const DriverCurrentListings = () => {
             {/* Card Items */}
             <div className="flex flex-col gap-5 ">
               {loading ? (
-                <>Loading...</>
+                <>
+                  {" "}
+                  {Array(3)
+                    .fill(0)
+                    .map(() => (
+                      <CurrentListingSkeleton />
+                    ))}
+                </>
               ) : showActiveListings ? (
                 activeDriverListings.length === 0 ? (
-                  <>No Active Listings</>
+                  <>
+                    <SearchMessage message="No Active Listings" />
+                  </>
                 ) : (
                   activeDriverListings.map((listingItem) => (
                     <CurrentListingCard
@@ -78,11 +90,17 @@ const DriverCurrentListings = () => {
                       phone={listingItem.phone}
                       startLocation={listingItem.startLocation}
                       endLocation={listingItem.endLocation}
+                      distanceFromStart={calculateDistance(
+                        JSON.parse(listingItem.startLocation),
+                        JSON.parse(listingItem.endLocation)
+                      )}
                     />
                   ))
                 )
               ) : pendingDriverListings.length === 0 ? (
-                <>No Pending Listings</>
+                <>
+                  <SearchMessage message="No Pending Listings" />
+                </>
               ) : (
                 pendingDriverListings.map((listingItem) => (
                   <CurrentListingCard
@@ -96,6 +114,10 @@ const DriverCurrentListings = () => {
                     phone={listingItem.phone}
                     startLocation={listingItem.startLocation}
                     endLocation={listingItem.endLocation}
+                    distanceFromStart={calculateDistance(
+                      JSON.parse(listingItem.startLocation),
+                      JSON.parse(listingItem.endLocation)
+                    )}
                   />
                 ))
               )}

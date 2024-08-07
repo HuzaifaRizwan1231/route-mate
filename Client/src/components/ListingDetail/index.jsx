@@ -42,6 +42,9 @@ const ListingDetail = () => {
                 <Button
                   disabled={filteredListingItem.status === "active"}
                   onClick={bookListing}
+                  className={
+                    filteredListingItem.status === "active" && "bg-red-600"
+                  }
                 >
                   {filteredListingItem.status === "active"
                     ? "Booked"
@@ -95,7 +98,12 @@ const ListingDetail = () => {
             <div>
               <div className="flex justify-between items-center">
                 <h1 className="font-bold text-2xl">Driver Details</h1>
-                <Button variant="secondary">Contact</Button>
+                <Link
+                  target="_blank"
+                  to={`https://wa.me/${filteredListingItem.phone}`}
+                >
+                  <Button variant="secondary">Contact</Button>
+                </Link>
               </div>
               <div className="grid grid-cols-2 gap-7 py-4">
                 {/* One Item */}

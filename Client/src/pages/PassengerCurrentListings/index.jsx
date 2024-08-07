@@ -2,14 +2,12 @@ import PassengerNavbar from "@/components/PassengerNavbar";
 import React, { useEffect } from "react";
 import { usePassengerCurrentListings } from "./usePassengerCurrentListings";
 import CurrentListingCard from "@/components/CurrentListingCard";
+import { calculateDistance } from "@/utils/calculateDistance.utils";
+import CurrentListingSkeleton from "@/components/ui/Skeleton/CurrentListingSkeleton";
 
 const PassengerCurrentListings = () => {
-  const {
-    loading,
-    passengerListings,
-    getPassengerListings,
-    calculateDistance,
-  } = usePassengerCurrentListings();
+  const { loading, passengerListings, getPassengerListings } =
+    usePassengerCurrentListings();
 
   useEffect(() => {
     getPassengerListings();
@@ -25,7 +23,13 @@ const PassengerCurrentListings = () => {
             {/* Card Items */}
             <div className="flex flex-col gap-5 ">
               {loading ? (
-                <>Loading...</>
+                <>
+                  {Array(3)
+                    .fill(0)
+                    .map(() => (
+                      <CurrentListingSkeleton />
+                    ))}
+                </>
               ) : passengerListings.length === 0 ? (
                 <>No Listings</>
               ) : (

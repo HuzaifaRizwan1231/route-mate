@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import ListingCardSkeleton from "@/components/ui/Skeleton/ListingCardSkeleton";
 import { SearchBox } from "@mapbox/search-js-react";
 import { Loader2 } from "lucide-react";
+import SearchMessage from "@/components/SearchMessage";
 
 const SearchListing = () => {
   const { listing } = useSelector((state) => state.listing);
@@ -81,9 +82,13 @@ const SearchListing = () => {
                     ))}
                 </>
               ) : !listing ? (
-                <>Enter start and end locations to search</>
+                <>
+                  <SearchMessage message="Enter start and end locations to search" />
+                </>
               ) : listing.length === 0 ? (
-                <>No Results Found</>
+                <>
+                  <SearchMessage message="No Results Found" />
+                </>
               ) : (
                 <>
                   {listing.map((listingItem) => (

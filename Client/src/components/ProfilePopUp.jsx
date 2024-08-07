@@ -16,7 +16,7 @@ const ProfilePopUp = (props) => {
   };
 
   return (
-    <div className="absolute top-[5.5rem] right-[2.25rem] bg-white text-black rounded-xl flex flex-col gap-2 justify-center p-2 w-44 border border-gray-200 shadow-lg">
+    <div className="absolute z-20 top-[5.5rem] right-[2.25rem] bg-white text-black rounded-xl flex flex-col gap-2 justify-center p-2 w-44 border border-gray-200 shadow-lg">
       <div className="flex flex-col justify-center items-center p-2">
         <div
           onClick={logout}

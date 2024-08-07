@@ -51,7 +51,7 @@ const MapBox = (props) => {
             },
             paint: {
               "circle-radius": 10,
-              "circle-color": "#f30",
+              "circle-color": "#008000",
             },
           });
         }
