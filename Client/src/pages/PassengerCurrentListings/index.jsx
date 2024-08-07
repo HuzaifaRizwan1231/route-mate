@@ -4,8 +4,12 @@ import { usePassengerCurrentListings } from "./usePassengerCurrentListings";
 import CurrentListingCard from "@/components/CurrentListingCard";
 
 const PassengerCurrentListings = () => {
-  const { loading, passengerListings, getPassengerListings } =
-    usePassengerCurrentListings();
+  const {
+    loading,
+    passengerListings,
+    getPassengerListings,
+    calculateDistance,
+  } = usePassengerCurrentListings();
 
   useEffect(() => {
     getPassengerListings();
@@ -37,6 +41,10 @@ const PassengerCurrentListings = () => {
                     phone={listingItem.phone}
                     startLocation={listingItem.startLocation}
                     endLocation={listingItem.endLocation}
+                    distanceFromStart={calculateDistance(
+                      JSON.parse(listingItem.startLocation),
+                      JSON.parse(listingItem.endLocation)
+                    )}
                   />
                 ))
               )}

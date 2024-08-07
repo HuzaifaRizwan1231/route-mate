@@ -38,7 +38,15 @@ const ListingDetail = () => {
             <div>
               <div className="flex justify-between items-center">
                 <h1 className="font-bold text-2xl">Listing Details</h1>
-                <Button onClick={bookListing}>Book now</Button>
+
+                <Button
+                  disabled={filteredListingItem.status === "active"}
+                  onClick={bookListing}
+                >
+                  {filteredListingItem.status === "active"
+                    ? "Booked"
+                    : "Book now"}
+                </Button>
               </div>
               <div className="grid grid-cols-2 gap-7 py-4">
                 {/* One Item */}

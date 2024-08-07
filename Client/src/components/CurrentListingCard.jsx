@@ -14,6 +14,7 @@ const CurrentListingCard = (props) => {
     startLocation,
     endLocation,
     listingId,
+    distanceFromStart,
   } = props;
   return (
     <>
@@ -28,11 +29,12 @@ const CurrentListingCard = (props) => {
               {rating}
               {/*  <span className="text-xs font-normal">(12)</span> */}
             </div>
-            <div className="border-gray-400 border-[1px] py-1 px-2 rounded-lg bg-green-200 text-green-950">
-              Available now
-            </div>
+
             <div className="py-1 px-2 rounded-lg">
-              <i class="fa-sharp fa-solid fa-person-walking"></i> 120m
+              <i class="fa-sharp fa-solid fa-person-walking"></i>{" "}
+              {Math.floor(distanceFromStart) > 1000
+                ? Math.floor(Math.floor(distanceFromStart) / 1000) + "km"
+                : Math.floor(distanceFromStart) + "m"}
             </div>
           </div>
           {/* Info grid */}

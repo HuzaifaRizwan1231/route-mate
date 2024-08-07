@@ -7,6 +7,7 @@ import { useSearchListing } from "./useSearchListing";
 import { useSelector } from "react-redux";
 import ListingCardSkeleton from "@/components/ui/Skeleton/ListingCardSkeleton";
 import { SearchBox } from "@mapbox/search-js-react";
+import { Loader2 } from "lucide-react";
 
 const SearchListing = () => {
   const { listing } = useSelector((state) => state.listing);
@@ -55,7 +56,13 @@ const SearchListing = () => {
                 }
               />
             </div>
-            <Button className="bg-green-600 hover:bg-green-900">Search</Button>
+            <Button
+              disabled={loading}
+              className="bg-green-600 hover:bg-green-900"
+            >
+              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              Search
+            </Button>
           </form>
           <div className="mx-10 flex flex-col gap-10">
             <h1 className="text-4xl font-bold">
@@ -91,12 +98,19 @@ const SearchListing = () => {
                           {listingItem.rating}
                           {/*  <span className="text-xs font-normal">(12)</span> */}
                         </div>
-                        <div className="border-gray-400 border-[1px] py-1 px-2 rounded-lg bg-green-200 text-green-950">
-                          Available now
-                        </div>
+                        {listingItem.status === "pending" ? (
+                          <div className="border-gray-400 border-[1px] py-1 px-2 rounded-lg bg-green-200 text-green-950">
+                            Available now
+                          </div>
+                        ) : (
+                          <div className="border-red-400 border-[1px] py-1 px-2 rounded-lg bg-red-200 text-red-950">
+                            Booked
+                          </div>
+                        )}
+
                         <div className="py-1 px-2 rounded-lg">
                           <i class="fa-sharp fa-solid fa-person-walking"></i>{" "}
-                          120m
+                          {Math.floor(listingItem.distanceFromStart)}m
                         </div>
                       </div>
                       {/* IMage */}
