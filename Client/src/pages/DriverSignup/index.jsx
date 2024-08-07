@@ -148,7 +148,7 @@ const DriverSignup = () => {
 
               <div className="login-link text-sm flex justify-center">
                 Already have an account?{" "}
-                <Link to="/driver/login">
+                <Link to="/driver/signin">
                   <span className="ml-1 text-blue-600"> Login</span>
                 </Link>
               </div>
@@ -162,7 +162,10 @@ const DriverSignup = () => {
               </span>
             </div>
             <div className="other-sign-in-options justify-center flex gap-4">
-              <Button variant="outline">Passenger</Button>
+              <Link to="/passenger/signin">
+                {" "}
+                <Button variant="outline">Passenger</Button>
+              </Link>
             </div>
           </div>
         </div>

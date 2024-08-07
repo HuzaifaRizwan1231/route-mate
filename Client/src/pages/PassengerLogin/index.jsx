@@ -81,7 +81,7 @@ const PassengerLogin = () => {
 
               <div className="sign-up-link text-sm flex justify-center">
                 Don't have an account?{" "}
-                <Link to="/signup">
+                <Link to="/passenger/signup">
                   <span className="ml-1 text-blue-600"> Sign Up</span>
                 </Link>
               </div>
@@ -95,7 +95,9 @@ const PassengerLogin = () => {
               </span>
             </div>
             <div className="other-sign-in-options justify-center flex gap-4">
-              <Button variant="outline">Driver</Button>
+              <Link to="/driver/signin">
+                <Button variant="outline">Driver</Button>
+              </Link>
             </div>
           </div>
         </div>

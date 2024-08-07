@@ -95,7 +95,9 @@ const DriverLogin = () => {
               </span>
             </div>
             <div className="other-sign-in-options justify-center flex gap-4">
-              <Button variant="outline">Passenger</Button>
+              <Link to="/passenger/signin">
+                <Button variant="outline">Passenger</Button>
+              </Link>
             </div>
           </div>
         </div>
