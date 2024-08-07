@@ -10,8 +10,16 @@ const PassengerNavbar = () => {
   return (
     <>
       <div className="flex text-white bg-black items-center justify-between px-6 py-7 font-normal text-xl rounded-3xl m-4">
-        <Link to="/passenger/home" className="font-semibold text-2xl">
-          RouteMate
+        <Link
+          to="/passenger/home"
+          className="font-semibold text-2xl flex gap-2 items-center"
+        >
+          <img
+            src="/src/assets/images/logo/logo-no-background.png"
+            alt=""
+            className="w-8 h-8"
+          />
+          <div>RouteMate</div>
         </Link>
         <div className="flex gap-24 flex-1 justify-center">
           <Link to="/passenger/home" className="flex items-center gap-4">
