@@ -123,8 +123,8 @@ const SearchListing = () => {
                         <img
                           src={
                             listingItem.type === "car"
-                              ? "/src/assets/images/car.webp"
-                              : "/src/assets/images/bike.webp"
+                              ? "/images/car.webp"
+                              : "/images/bike.webp"
                           }
                           alt=""
                           className="object-contain w-full h-full rounded-3xl"

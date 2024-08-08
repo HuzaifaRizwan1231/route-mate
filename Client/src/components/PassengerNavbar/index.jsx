@@ -15,7 +15,7 @@ const PassengerNavbar = () => {
           className="font-semibold text-2xl flex gap-2 items-center"
         >
           <img
-            src="/src/assets/images/logo/logo-no-background.png"
+            src="/images/logo/logo-no-background.png"
             alt=""
             className="w-8 h-8"
           />
