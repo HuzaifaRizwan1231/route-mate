@@ -12,7 +12,7 @@ export const usePassengerCurrentListings = () => {
       setPassengerListings(response.listing);
       setLoading(false);
     } else {
-      console.log(responseS);
+      console.log(response);
     }
   };
   return {
