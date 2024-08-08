@@ -29,7 +29,7 @@ const signInPassenger = async (req, res) => {
         if (validPassword) {
           const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
           res
-            .cookie("passenger_token", token, { httpOnly: true })
+            .cookie("passenger_token", token)
             .status(200)
             .send({
               success: true,
@@ -79,14 +79,11 @@ const signUpPassenger = async (req, res) => {
                 return res.send({ success: false, error: err.message });
               }
               const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
-              res
-                .cookie("passenger_token", token, { httpOnly: true })
-                .status(201)
-                .send({
-                  success: true,
-                  message: "Passenger Registered",
-                  passenger: { name, email, password, phone, image, cnic },
-                });
+              res.cookie("passenger_token", token).status(201).send({
+                success: true,
+                message: "Passenger Registered",
+                passenger: { name, email, password, phone, image, cnic },
+              });
             }
           );
         }
@@ -118,7 +115,7 @@ const signInDriver = async (req, res) => {
       if (validPassword) {
         const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
         res
-          .cookie("driver_token", token, { httpOnly: true })
+          .cookie("driver_token", token)
           .status(200)
           .send({
             success: true,
@@ -166,14 +163,11 @@ const signUpDriver = async (req, res) => {
               return res.send({ success: false, error: err.message });
             }
             const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
-            res
-              .cookie("driver_token", token, { httpOnly: true })
-              .status(201)
-              .send({
-                success: true,
-                message: "Driver Registered",
-                driver: { name, email, password, phone, license, cnic },
-              });
+            res.cookie("driver_token", token).status(201).send({
+              success: true,
+              message: "Driver Registered",
+              driver: { name, email, password, phone, license, cnic },
+            });
           }
         );
       }
