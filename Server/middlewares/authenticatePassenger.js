@@ -3,6 +3,7 @@ const db = require("../config/db");
 
 const authenticatePassenger = async (req, res, next) => {
   try {
+    console.log(req);
     const token = await req.cookies.passenger_token;
     if (token === undefined) {
       return res
