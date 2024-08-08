@@ -20,6 +20,7 @@ export const createListingApi = async (
 export const getListingsApi = async (coordinates) => {
   try {
     const response = await axios.post(`/api/listing/get`, { coordinates });
+    console.log(response);
     return response.data;
   } catch (error) {
     return { success: false, message: error };

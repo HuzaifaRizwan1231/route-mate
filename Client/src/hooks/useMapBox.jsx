@@ -34,7 +34,13 @@ export const useMapBox = () => {
       };${end[0]},${end[1]}?steps=false&geometries=geojson&access_token=${
         import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
       }`,
-      { method: "GET" }
+      {
+        method: "GET",
+        headers: {
+          "access-control-allow-origin": "*",
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }
     );
     const jsonResponse = await response.json();
     const routeReponse = await jsonResponse.routes[0];
