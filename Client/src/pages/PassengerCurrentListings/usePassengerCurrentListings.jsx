@@ -11,6 +11,8 @@ export const usePassengerCurrentListings = () => {
     if (response.success) {
       setPassengerListings(response.listing);
       setLoading(false);
+    } else {
+      console.log(responseS);
     }
   };
   return {

@@ -64,6 +64,6 @@ export const getPassengerListingsApi = async () => {
     console.log(response);
     return response.data;
   } catch (error) {
-    return { success: false, message: error.message };
+    return { success: false, message: error };
   }
 };
