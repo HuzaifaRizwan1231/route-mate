@@ -8,7 +8,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Profile from "./pages/Profile";
 import PassengerHome from "./pages/PassengerHome";
 import SearchListing from "./pages/SearchListing";
 import PassengerPrivateRoutes from "./components/PrivateRoutes/PassengerPrivateRoutes";
