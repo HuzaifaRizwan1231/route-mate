@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy":"https://route-mate-backend.vercel.app",
+  "proxy": "https://route-mate-backend.vercel.app",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
