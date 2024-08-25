@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://192.168.1.9:3000";
+axios.defaults.baseURL = "https://route-mate-backend.vercel.app";
 axios.defaults.withCredentials = true;
 
 export default axios;
