@@ -26,12 +26,12 @@ const SearchListing = () => {
     <>
       <div>
         <PassengerNavbar />
-        <div className="flex flex-col gap-10 bg-white text-black min-h-[80vh] rounded-t-[2.5rem] p-4">
+        <div className="flex flex-col gap-10 bg-white text-black min-h-[80vh] rounded-t-[2.5rem] md:p-4 p-1">
           <form
-            className=" flex mt-10 mx-10 justify-center rounded-3xl px-20 py-6 gap-8"
+            className="md:flex-row flex-col flex md:mt-10 mx-10 justify-center rounded-3xl md:px-20 py-6 gap-8"
             onSubmit={getListingsByLocation}
           >
-            <div className="flex gap-2 items-center">
+            <div className="flex  gap-2 items-center">
               <div className="flex items-center justify-center bg-gray-800 text-white w-12 h-10 rounded-md">
                 <i class="fa-solid fa-location-crosshairs"></i>
               </div>
@@ -71,12 +71,12 @@ const SearchListing = () => {
               Search
             </Button>
           </form>
-          <div className="mx-10 flex flex-col gap-10">
+          <div className="md:mx-10 mx-4 text-center md:text-left flex flex-col gap-10">
             <h1 className="text-4xl font-bold">
               Search results for your locations
             </h1>
             {/* Card Items */}
-            <div className="grid grid-cols-3 gap-5 ">
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-5 ">
               {/* Card Item */}
 
               {loading ? (
@@ -139,7 +139,7 @@ const SearchListing = () => {
                       {/* Info */}
                       <div>
                         {/* Company  */}
-                        <div className="text-sm text-gray-400 font-semibold">
+                        <div className="text-sm text-left text-gray-400 font-semibold">
                           VEHICLE
                         </div>
                         {/* Name and price */}

@@ -23,7 +23,7 @@ const PassengerCurrentListings = () => {
       <div>
         <PassengerNavbar />
         <div className="flex flex-col gap-10 bg-white min-h-[80vh] text-black rounded-t-[2.5rem] p-4">
-          <div className="mx-10 flex flex-col gap-10">
+          <div className="md:mx-10 m-1 flex flex-col gap-10">
             <h1 className="text-4xl font-bold text-center">Your Listings</h1>
             {/* Card Items */}
             <div className="flex flex-col gap-5 ">

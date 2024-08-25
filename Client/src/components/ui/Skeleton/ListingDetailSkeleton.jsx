@@ -1,11 +1,10 @@
 import React from "react";
-import { Button } from "../button";
 
 const ListingDetailSkeleton = () => {
   return (
     <>
-      <div className="h-full animate-pulse">
-        <div className="h-1/2 bg-[#e3e3e3] rounded-lg"></div>
+      <div className="h-full bg-white animate-pulse">
+        <div className="h-1/2 m-3 bg-[#e3e3e3] rounded-3xl"></div>
         <div className="h-1/2 py-4 px-8 flex flex-col gap-4">
           <div>
             <div className="flex justify-between items-center">

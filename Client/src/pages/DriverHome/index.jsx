@@ -17,7 +17,7 @@ const DriverHome = () => {
       <div>
         <DriverNavbar />
         <div className="home-section text-black h-[80vh]">
-          <div className="flex gap-5 flex-col justify-center items-center py-16">
+          <div className="md:m-0 m-4 flex gap-5 flex-col justify-center items-center py-16">
             <h1 className="text-6xl font-bold text-center">
               Explore a new world!
             </h1>

@@ -16,14 +16,14 @@ const ListingDetail = () => {
   }, [listingId]);
 
   return (
-    <div className="fixed top-0 right-0 w-[40vw] shadow-xl bg-white h-[100%] z-10 ">
+    <div className="fixed top-0 right-0 md:w-[40vw] w-[100vw] shadow-xl bg-white h-[100%] z-10 ">
       {!filteredListingItem ? (
         <>
           <ListingDetailSkeleton />
         </>
       ) : (
         <>
-          <div className="h-1/2" id="map">
+          <div className="h-1/2 m-3" id="map">
             <Link to="/passenger/searchListing">
               <Button className="z-10 fixed rounded-full m-2 ">
                 <i class="fa-solid fa-x"></i>
