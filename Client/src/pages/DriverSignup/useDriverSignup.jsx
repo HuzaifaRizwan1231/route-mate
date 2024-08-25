@@ -49,6 +49,7 @@ export const useDriverSignup = () => {
     setLoading(false);
     if (response.success) {
       dispatch(setDriver({ ...response.driver, image: null, rating: "0.0" }));
+      toast.success("Registered Successfully");
       // Route the user to the home page
       navigate("/driver/home");
       console.log(driver);

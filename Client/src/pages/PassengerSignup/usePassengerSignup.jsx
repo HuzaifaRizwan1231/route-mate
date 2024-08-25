@@ -42,6 +42,7 @@ export const usePassengerSignup = () => {
     setLoading(false);
     if (response.success) {
       dispatch(setPassenger(response.passenger));
+      toast.success("Registered Successfully");
       // Route the user to the home page
       navigate("/passenger/home");
     } else {

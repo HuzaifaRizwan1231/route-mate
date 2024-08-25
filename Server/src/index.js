@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "https://route-mate.vercel.app",
+    origin: "http://localhost:5173",
     methods: ["POST", "GET"],
   })
 );

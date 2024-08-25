@@ -7,7 +7,7 @@ export const signUpPassengerApi = async (passenger) => {
     });
     return response.data;
   } catch (error) {
-    console.log(error);
+    return { success: false, message: error.message };
   }
 };
 
@@ -18,7 +18,7 @@ export const signInPassengerApi = async (passenger) => {
     });
     return response.data;
   } catch (error) {
-    console.log(error);
+    return { success: false, message: error.message };
   }
 };
 
@@ -29,7 +29,7 @@ export const signUpDriverApi = async (driver) => {
     });
     return response.data;
   } catch (error) {
-    console.log(error);
+    return { success: false, message: error.message };
   }
 };
 
@@ -40,6 +40,6 @@ export const signInDriverApi = async (driver) => {
     });
     return response.data;
   } catch (error) {
-    console.log(error);
+    return { success: false, message: error.message };
   }
 };

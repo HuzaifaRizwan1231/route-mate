@@ -46,6 +46,11 @@ const signInPassenger = async (req, res) => {
                 cnic: result[0].CNIC,
               },
             });
+        } else {
+          return res.send({
+            success: false,
+            error: "Incorrect Email or Password",
+          });
         }
       }
     );
@@ -143,6 +148,11 @@ const signInDriver = async (req, res) => {
               rating: result[0].rating,
             },
           });
+      } else {
+        return res.send({
+          success: false,
+          error: "Incorrect Email or Password",
+        });
       }
     });
   } catch (error) {

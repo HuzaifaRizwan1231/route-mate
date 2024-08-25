@@ -33,6 +33,7 @@ export const useDriverLogin = () => {
     if (response.success) {
       // Correct credentials
       dispatch(setDriver(response.driver));
+      toast.success("Logged In");
       navigate("/driver/home");
     } else {
       setError(response.error);

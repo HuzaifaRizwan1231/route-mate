@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import DriverNavbar from "@/components/DriverNavbar";
@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Loader2 } from "lucide-react";
+import Footer from "@/components/Footer";
 
 const CreateListing = () => {
   const [mapInstance, setMapInstance] = useState();
@@ -27,11 +28,18 @@ const CreateListing = () => {
     error,
   } = useCreateListing();
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <>
       <div>
         <DriverNavbar />
-        <div className="bg-white h-screen text-black rounded-[2.5rem] flex">
+        <div className="bg-white min-h-[80vh] text-black rounded-[2.5rem] flex">
           <div className="w-2/3 h-full rounded-tl-[2.5rem] px-16 py-8">
             <h1 className="text-4xl font-bold">Create a Listing</h1>
             <form
@@ -179,6 +187,7 @@ const CreateListing = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

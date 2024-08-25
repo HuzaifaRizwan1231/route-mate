@@ -9,18 +9,24 @@ import ListingCardSkeleton from "@/components/ui/Skeleton/ListingCardSkeleton";
 import { SearchBox } from "@mapbox/search-js-react";
 import { Loader2 } from "lucide-react";
 import SearchMessage from "@/components/SearchMessage";
+import Footer from "@/components/Footer";
 
 const SearchListing = () => {
   const { listing } = useSelector((state) => state.listing);
   const { getListingsByLocation, loading, setCoordinates, coordinates } =
     useSearchListing();
-  useEffect(() => {}, []);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   return (
     <>
       <div>
         <PassengerNavbar />
-        <div className="flex flex-col gap-10 bg-white text-black h-screen rounded-t-[2.5rem] p-4">
+        <div className="flex flex-col gap-10 bg-white text-black min-h-[80vh] rounded-t-[2.5rem] p-4">
           <form
             className=" flex mt-10 mx-10 justify-center rounded-3xl px-20 py-6 gap-8"
             onSubmit={getListingsByLocation}
@@ -155,6 +161,7 @@ const SearchListing = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

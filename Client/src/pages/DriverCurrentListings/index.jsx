@@ -6,6 +6,7 @@ import CurrentListingCard from "@/components/CurrentListingCard";
 import { calculateDistance } from "@/utils/calculateDistance.utils";
 import CurrentListingSkeleton from "@/components/ui/Skeleton/CurrentListingSkeleton";
 import SearchMessage from "@/components/SearchMessage";
+import Footer from "@/components/Footer";
 
 const DriverCurrentListings = () => {
   const {
@@ -20,6 +21,10 @@ const DriverCurrentListings = () => {
   } = useDriverCurrentListings();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     getDriverListings();
   }, []);
 
@@ -27,7 +32,7 @@ const DriverCurrentListings = () => {
     <>
       <div>
         <DriverNavbar />
-        <div className="flex flex-col gap-10 bg-white text-black h-screen rounded-t-[2.5rem] p-4">
+        <div className="flex flex-col gap-10 bg-white text-black min-h-[80vh] rounded-t-[2.5rem] p-4">
           <div className="flex w-fit mx-auto mt-4 mb-2 bg-white shadow-xl border border-gray-200 rounded-3xl">
             <Button
               onClick={() => {
@@ -125,6 +130,7 @@ const DriverCurrentListings = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

@@ -32,7 +32,7 @@ export const usePassengerLogin = () => {
     if (response.success) {
       // Correct credentials
       dispatch(setPassenger(response.passenger));
-      console.log(passenger);
+      toast.success("Logged In");
       navigate("/passenger/home");
     } else {
       setError(response.error);

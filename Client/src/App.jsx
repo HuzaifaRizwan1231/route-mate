@@ -19,10 +19,13 @@ import DriverSignup from "./pages/DriverSignup";
 import DriverLogin from "./pages/DriverLogin";
 import DriverCurrentListings from "./pages/DriverCurrentListings";
 import PassengerCurrentListings from "./pages/PassengerCurrentListings";
+import Footer from "./components/Footer";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
+      <Toaster />
       <Router>
         <Routes>
           <Route path="/driver/signup" element={<DriverSignup />} />

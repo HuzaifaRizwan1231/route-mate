@@ -72,6 +72,7 @@ export const useCreateListing = () => {
     if (!response.success) {
       setError(response.message);
     } else {
+      toast.success("Created Listing");
       navigate("/driver/home");
     }
     setLoading(false);

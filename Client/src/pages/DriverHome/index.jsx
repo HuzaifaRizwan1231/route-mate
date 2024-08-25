@@ -1,14 +1,22 @@
 import DriverNavbar from "@/components/DriverNavbar";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const DriverHome = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <>
       <div>
         <DriverNavbar />
-        <div className="home-section text-black h-screen">
+        <div className="home-section text-black h-[80vh]">
           <div className="flex gap-5 flex-col justify-center items-center py-16">
             <h1 className="text-6xl font-bold">Explore a new world!</h1>
             <div className="text-lg text-center">
@@ -25,6 +33,7 @@ const DriverHome = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
