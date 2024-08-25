@@ -24,7 +24,9 @@ const PassengerHome = () => {
         <PassengerNavbar />
         <div className="home-section text-black h-[80vh]">
           <div className="flex gap-5 flex-col justify-center items-center py-16">
-            <h1 className="text-6xl font-bold">Explore a new world!</h1>
+            <h1 className="text-6xl font-bold text-center">
+              Explore a new world!
+            </h1>
             <div className="text-lg text-center">
               <p>Your companion for your daily commute is right here.</p>
               <p>Secure, Fast and Easy!</p>

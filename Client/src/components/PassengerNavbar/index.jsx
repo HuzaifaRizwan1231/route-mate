@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ProfilePopUp from "../ProfilePopUp";
+import MobileProfilePopUp from "../MobileProfilePopUp";
 
 const PassengerNavbar = () => {
   const { passenger } = useSelector((state) => state.passenger);
 
   const [showProfilePopUp, setShowProfilePopUp] = useState(false);
+  const [showMobileProfilePopUp, setShowMobileProfilePopUp] = useState(false);
+
   return (
     <>
       <div className="flex text-white bg-black items-center justify-between px-6 py-7 font-normal text-xl rounded-3xl m-4">
@@ -21,7 +24,7 @@ const PassengerNavbar = () => {
           />
           <div>RouteMate</div>
         </Link>
-        <div className="flex gap-24 flex-1 justify-center">
+        <div className="hidden md:flex gap-24 flex-1 justify-center">
           <Link to="/passenger/home" className="flex items-center gap-4">
             <i class="fa-solid fa-house"></i> Home
           </Link>
@@ -39,11 +42,20 @@ const PassengerNavbar = () => {
             <i class="fa-solid fa-list"></i>Your Listings
           </Link>
         </div>
+        {/* Mobile navbar */}
+        <div
+          className="md:hidden"
+          onClick={() => {
+            setShowMobileProfilePopUp(!showMobileProfilePopUp);
+          }}
+        >
+          <i class={`fa-solid fa-${showMobileProfilePopUp ? "x" : "bars"}`}></i>
+        </div>
         <div
           onClick={() => {
             setShowProfilePopUp(!showProfilePopUp);
           }}
-          className="flex items-center gap-3 cursor-pointer"
+          className="hidden md:flex items-center gap-3 cursor-pointer"
         >
           {/* <div className="w-12 h-12 bg-white rounded-full">
             <img
@@ -60,6 +72,7 @@ const PassengerNavbar = () => {
           </div>
         </div>
         {showProfilePopUp && <ProfilePopUp role="passenger" />}
+        {showMobileProfilePopUp && <MobileProfilePopUp role="passenger" />}
       </div>
     </>
   );
