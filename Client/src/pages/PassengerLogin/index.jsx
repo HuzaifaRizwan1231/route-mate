@@ -6,10 +6,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { usePassengerLogin } from "./usePassengerLogin";
 import { Loader2 } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const PassengerLogin = () => {
   const { handleLoginInputChange, handleSignIn, loading, error } =
     usePassengerLogin();
+  const { passenger } = useSelector((state) => state.passenger);
+
   return (
     <>
       <div className="login-wrapper py-10 flex items-center justify-center">
@@ -30,6 +33,7 @@ const PassengerLogin = () => {
               <div className="grid w-full items-center gap-3">
                 <Label htmlFor="email">Email</Label>
                 <Input
+                  value={passenger.email}
                   required
                   onChange={handleLoginInputChange}
                   className="py-6"
@@ -44,6 +48,7 @@ const PassengerLogin = () => {
                 <Label htmlFor="password">Password</Label>
                 <Input
                   required
+                  value={passenger.password}
                   onChange={handleLoginInputChange}
                   className="py-6"
                   type="password"

@@ -6,10 +6,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { useDriverLogin } from "./useDriverLogin";
+import { useSelector } from "react-redux";
 
 const DriverLogin = () => {
   const { handleDriverLoginInputChange, handleDriverSignIn, loading, error } =
     useDriverLogin();
+  const { driver } = useSelector((state) => state.driver);
+
   return (
     <>
       <div className="login-wrapper py-10 flex items-center justify-center">
@@ -30,6 +33,7 @@ const DriverLogin = () => {
               <div className="grid w-full items-center gap-3">
                 <Label htmlFor="email">Email</Label>
                 <Input
+                  value={driver.email}
                   required
                   onChange={handleDriverLoginInputChange}
                   className="py-6"
@@ -43,6 +47,7 @@ const DriverLogin = () => {
               <div className="grid w-full items-center gap-3">
                 <Label htmlFor="password">Password</Label>
                 <Input
+                  value={driver.password}
                   required
                   onChange={handleDriverLoginInputChange}
                   className="py-6"
