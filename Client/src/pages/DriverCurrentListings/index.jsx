@@ -61,7 +61,7 @@ const DriverCurrentListings = () => {
               Pending
             </Button>
           </div>
-          <div className="mx-10 flex flex-col gap-10">
+          <div className="md:mx-10 m-1 flex flex-col gap-10">
             <h1 className="text-4xl font-bold text-center">
               {showActiveListings && "Your Active listings"}
               {showPendingListings && "Your Pending listings"}

@@ -39,8 +39,8 @@ const CreateListing = () => {
     <>
       <div>
         <DriverNavbar />
-        <div className="bg-white min-h-[80vh] text-black rounded-[2.5rem] flex">
-          <div className="w-2/3 h-full rounded-tl-[2.5rem] px-16 py-8">
+        <div className="bg-white min-h-[80vh] text-black rounded-[2.5rem] flex md:flex-row flex-col-reverse">
+          <div className="md:w-2/3 h-full rounded-tl-[2.5rem] md:px-16 px-2 py-8 md:m-0 m-4">
             <h1 className="text-4xl font-bold">Create a Listing</h1>
             <form
               className="grid grid-cols-2 gap-10 py-10"
@@ -48,26 +48,26 @@ const CreateListing = () => {
             >
               {/* One Item */}
               <div className="flex flex-col gap-2">
-                <div className="text-xl text-gray-400 font-semibold">
+                <div className="text-lg text-gray-400 font-semibold">
                   Vehicle Name
                 </div>
                 <Input
                   required
                   onChange={handleListingDetailChange}
                   name="vehicleName"
-                  className="text-2xl py-6 px-4"
+                  className="text-xl py-6 px-4"
                   placeholder="Honda civic"
                 />
               </div>
               {/* One Item */}
               <div className="flex flex-col gap-2">
-                <div className="text-xl text-gray-400 font-semibold">
+                <div className="text-lg text-gray-400 font-semibold">
                   Vehicle Type
                 </div>
                 <Select
                   onValueChange={(value) => handleVehicleTypeChange(value)}
                 >
-                  <SelectTrigger className="text-2xl py-6 px-4">
+                  <SelectTrigger className="text-xl py-6 px-4">
                     <SelectValue placeholder="Car" />
                   </SelectTrigger>
                   <SelectContent>
@@ -78,31 +78,31 @@ const CreateListing = () => {
               </div>
               {/* One Item */}
               <div className="flex flex-col gap-2">
-                <div className="text-xl text-gray-400 font-semibold">
+                <div className="text-lg text-gray-400 font-semibold">
                   Registration No.
                 </div>
                 <Input
                   required
                   onChange={handleListingDetailChange}
                   name="registrationNumber"
-                  className="text-2xl py-6 px-4"
+                  className="text-xl py-6 px-4"
                   placeholder="LEAXXXX"
                 />
               </div>
               {/* One Item */}
               <div className="flex flex-col gap-2">
-                <div className="text-xl text-gray-400 font-semibold">Color</div>
+                <div className="text-lg text-gray-400 font-semibold">Color</div>
                 <Input
                   required
                   onChange={handleListingDetailChange}
                   name="color"
-                  className="text-2xl py-6 px-4"
+                  className="text-xl py-6 px-4"
                   placeholder="black"
                 />
               </div>
               {/* One Item */}
               <div className="flex flex-col gap-2">
-                <div className="text-xl text-gray-400 font-semibold">
+                <div className="text-lg text-gray-400 font-semibold">
                   Start Location
                 </div>
 
@@ -120,7 +120,7 @@ const CreateListing = () => {
               </div>
               {/* One Item */}
               <div className="flex flex-col gap-2">
-                <div className="text-xl text-gray-400 font-semibold">
+                <div className="text-lg text-gray-400 font-semibold">
                   End Location
                 </div>
 
@@ -138,12 +138,12 @@ const CreateListing = () => {
               </div>
               {/* One Item */}
               <div className="flex flex-col gap-2">
-                <div className="text-xl text-gray-400 font-semibold">Price</div>
+                <div className="text-lg text-gray-400 font-semibold">Price</div>
                 <Input
                   required
                   onChange={handleListingDetailChange}
                   name="price"
-                  className="text-2xl py-6 px-4"
+                  className="text-xl py-6 px-4"
                   placeholder="100"
                   type="number"
                 />
@@ -151,14 +151,14 @@ const CreateListing = () => {
 
               {/* One Item */}
               <div className="flex flex-col gap-2">
-                <div className="text-xl text-gray-400 font-semibold">
+                <div className="text-lg text-gray-400 font-semibold">
                   Contact No.
                 </div>
                 <Input
                   onChange={handleListingDetailChange}
                   name="contact"
                   required
-                  className="text-2xl py-6 px-4"
+                  className="text-xl py-6 px-4"
                   placeholder="03XXXXXXXXX"
                   type="number"
                 />
@@ -178,7 +178,7 @@ const CreateListing = () => {
               </Button>
             </form>
           </div>
-          <div className="w-1/3 rounded-3xl shadow-xl m-4">
+          <div className="md:w-1/3 md:h-auto h-72 md:m-4 rounded-3xl shadow-xl m-5">
             <MapBox
               startCoordinates={listingDetails.startCoordinates}
               endCoordinates={listingDetails.endCoordinates}
