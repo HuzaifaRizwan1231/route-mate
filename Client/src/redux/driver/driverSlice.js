@@ -3,10 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const driverSlice = createSlice({
   name: "driver",
   initialState: {
-    driver: {
-      email: "driver@gmail.com",
-      password: "123",
-    },
+    driver: null,
   },
   reducers: {
     setDriver: (state, action) => {

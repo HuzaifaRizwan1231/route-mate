@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 const PassengerLogin = () => {
   const { handleLoginInputChange, handleSignIn, loading, error } =
     usePassengerLogin();
-  const { passenger } = useSelector((state) => state.passenger);
 
   return (
     <>
@@ -31,9 +30,13 @@ const PassengerLogin = () => {
             >
               {/* Email Input */}
               <div className="grid w-full items-center gap-3">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">
+                  Email{" "}
+                  <span className="italic text-gray-400">
+                    (passenger@gmail.com)
+                  </span>
+                </Label>
                 <Input
-                  value={passenger.email}
                   required
                   onChange={handleLoginInputChange}
                   className="py-6"
@@ -45,10 +48,11 @@ const PassengerLogin = () => {
               </div>
               {/* Password Input */}
               <div className="grid w-full items-center gap-3">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">
+                  Password <span className="italic text-gray-400">(123)</span>
+                </Label>
                 <Input
                   required
-                  value={passenger.password}
                   onChange={handleLoginInputChange}
                   className="py-6"
                   type="password"

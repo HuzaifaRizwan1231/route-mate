@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 const DriverLogin = () => {
   const { handleDriverLoginInputChange, handleDriverSignIn, loading, error } =
     useDriverLogin();
-  const { driver } = useSelector((state) => state.driver);
 
   return (
     <>
@@ -31,9 +30,13 @@ const DriverLogin = () => {
             >
               {/* Email Input */}
               <div className="grid w-full items-center gap-3">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">
+                  Email{" "}
+                  <span className="italic text-gray-400">
+                    (driver@gmail.com)
+                  </span>
+                </Label>
                 <Input
-                  value={driver.email}
                   required
                   onChange={handleDriverLoginInputChange}
                   className="py-6"
@@ -45,9 +48,10 @@ const DriverLogin = () => {
               </div>
               {/* Password Input */}
               <div className="grid w-full items-center gap-3">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">
+                  Password <span className="italic text-gray-400">(123)</span>
+                </Label>
                 <Input
-                  value={driver.password}
                   required
                   onChange={handleDriverLoginInputChange}
                   className="py-6"

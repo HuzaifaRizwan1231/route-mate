@@ -3,10 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const passengerSlice = createSlice({
   name: "passenger",
   initialState: {
-    passenger: {
-      email: "passenger@gmail.com",
-      password: "123",
-    },
+    passenger: null,
   },
   reducers: {
     setPassenger: (state, action) => {
