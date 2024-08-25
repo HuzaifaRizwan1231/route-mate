@@ -13,7 +13,7 @@ const PassengerLogin = () => {
   return (
     <>
       <div className="login-wrapper py-10 flex items-center justify-center">
-        <div className="login-section flex flex-col gap-8 mx-6 px-12 py-16 rounded-2xl shadow-xl border md:w-1/3 w-full">
+        <div className="login-section flex flex-col gap-8 mx-6 md:px-12 px-6 py-16 rounded-2xl shadow-xl border md:w-1/3 w-full">
           <div className="login-header flex flex-col gap-1">
             <h3 className="heading font-bold text-3xl">Passenger Login</h3>
             <h6 className="tagline text-gray-400">

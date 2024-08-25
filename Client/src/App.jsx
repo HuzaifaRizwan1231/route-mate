@@ -25,7 +25,7 @@ import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
-      <Toaster position="bottom-right" reverseOrder={false} />
+      <Toaster position="bottom-center" reverseOrder={false} />
       <Router>
         <Routes>
           <Route path="/driver/signup" element={<DriverSignup />} />
